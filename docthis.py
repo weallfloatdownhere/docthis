@@ -3,9 +3,7 @@ from os.path import abspath
 
 SCRIPT_PATH=os.path.dirname(os.path.realpath(__file__))
 
-@click.group()
-def cli():
-    pass
+# Utillities function.
 
 def executeProcess(command=None):
     try:
@@ -24,6 +22,13 @@ def writeYaml(data, outputfile):
     with open(outputfile, 'w') as file:
         documents = yaml.dump(data, file)
 
+
+# Sources classes. 
+
+@click.group()
+def cli():
+    pass
+
 class github():
     def __init__(self, outputdir) -> None:
         self.outputs = {"github_repositories": []}
@@ -39,6 +44,8 @@ class github():
         if os.path.exists(f"{outputdir}/github-values.yaml"): os.remove(f"{outputdir}/github-values.yaml")
         # Return
         self.outputFile = f"{outputdir}/github.md"
+
+# Command
 
 @click.command()
 @click.argument('outputdir')
