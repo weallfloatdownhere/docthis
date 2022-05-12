@@ -1,0 +1,5 @@
+github_repositories:
+  - helm/helm
+  - go-task/task
+  - megadose/holehe
+  - webtorrent/webtorrent-cli

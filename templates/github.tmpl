@@ -1,0 +1,5 @@
+{%- for repo in github_repositories %}
+[***{{ repo.description -}}***]({{ repo.url }})
+
+![GitHub last commit](https://img.shields.io/github/last-commit/{{ repo.repo }}) ![GitHub Repo stars](https://img.shields.io/github/stars/{{ repo.repo }}?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/{{ repo.repo }})
+{% endfor %}
