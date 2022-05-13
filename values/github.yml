@@ -4,3 +4,4 @@ github_repositories:
   - megadose/holehe
   - webtorrent/webtorrent-cli
   - zakjan/cert-chain-resolver
+  - gravitational/teleport
