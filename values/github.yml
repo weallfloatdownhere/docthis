@@ -3,3 +3,4 @@ github_repositories:
   - go-task/task
   - megadose/holehe
   - webtorrent/webtorrent-cli
+  - zakjan/cert-chain-resolver
