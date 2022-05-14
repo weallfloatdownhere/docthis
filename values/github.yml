@@ -6,3 +6,4 @@ github_repositories:
   - zakjan/cert-chain-resolver
   - gravitational/teleport
   - localtunnel/localtunnel
+  - argoproj-labs/argocd-image-updater
