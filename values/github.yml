@@ -7,3 +7,4 @@ github_repositories:
   - gravitational/teleport
   - localtunnel/localtunnel
   - argoproj-labs/argocd-image-updater
+  - archlinux/archinstall
