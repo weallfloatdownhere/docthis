@@ -8,3 +8,4 @@ github_repositories:
   - localtunnel/localtunnel
   - argoproj-labs/argocd-image-updater
   - archlinux/archinstall
+  - cloudposse/charts
