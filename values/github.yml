@@ -9,3 +9,4 @@ github_repositories:
   - argoproj-labs/argocd-image-updater
   - archlinux/archinstall
   - cloudposse/charts
+  - chr4/shellrc
