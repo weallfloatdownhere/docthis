@@ -31,14 +31,24 @@ def cli():
 
 class github():
     def __init__(self, outputdir) -> None:
+
         self.outputs = {"github_repositories": []}
+
         yaml_data=loadValues('github')
+
         for repo in yaml_data['github_repositories']:
-            desc = executeProcess(f"curl -L --silent https://github.com/{repo.name} | grep '<title>' | xargs | sed 's/<[^>]*>//g'")
-            self.outputs['github_repositories'] += [{"url": f"https://github.com/{repo.name}", "description": f"{desc.strip()}", "repo": repo.name }]
+            desc = executeProcess(f"curl -L --silent https://github.com/{repo['name']} | grep '<title>' | xargs | sed 's/<[^>]*>//g'")
+            installer = repo['install'] if repo['install'] else ''
+            self.outputs['github_repositories'] += [{"url": f"https://github.com/{repo['name']}",
+                                                    "description": f"{desc.strip()}", 
+                                                    "repo": repo['name'],
+                                                    "install": f"{installer}"
+                                                    }]
+
         # Write the final value file.
         writeYaml(self.outputs, f"{outputdir}/github-values.yaml")
         # Render the templates against the value file.
+        if os.path.exists(f"{outputdir}/github.md"): os.remove(f"{outputdir}/github.md")
         executeProcess(f"jinja2 {SCRIPT_PATH}/templates/github.tmpl {outputdir}/github-values.yaml --format=yaml > {outputdir}/github.md")
         # Remove temporary generated values files.
         if os.path.exists(f"{outputdir}/github-values.yaml"): os.remove(f"{outputdir}/github-values.yaml")
