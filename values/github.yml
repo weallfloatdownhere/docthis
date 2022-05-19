@@ -28,5 +28,8 @@ github_repositories:
 helms_charts:
   - https://github.com/bitnami/charts/tree/master/bitnami/argo-cd
 
+windows_tools:
+  - name: screetogif
+    website: https://www.screentogif.com/
 
 
