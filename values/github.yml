@@ -1,15 +1,26 @@
 github_repositories:
-  - helm/helm
-  - go-task/task
-  - megadose/holehe
-  - webtorrent/webtorrent-cli
-  - zakjan/cert-chain-resolver
-  - gravitational/teleport
-  - localtunnel/localtunnel
-  - argoproj-labs/argocd-image-updater
-  - archlinux/archinstall
-  - cloudposse/charts
-  - chr4/shellrc
+  - name: helm/helm
+    install: ""
+  - name: go-task/task
+    install: ""
+  - name: megadose/holehe
+    install: ""
+  - name: webtorrent/webtorrent-cli
+    install: ""
+  - name: zakjan/cert-chain-resolver
+    install: ""
+  - name: gravitational/teleport
+    install: ""
+  - name: localtunnel/localtunnel
+    install: ""
+  - name: argoproj-labs/argocd-image-updater
+    install: ""
+  - name: archlinux/archinstall
+    install: ""
+  - name: cloudposse/charts
+    install: ""
+  - name: chr4/shellrc
+    install: ""
   
-additional_resources:
+helms_charts:
   - https://github.com/bitnami/charts/tree/master/bitnami/argo-cd
