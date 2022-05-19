@@ -34,8 +34,8 @@ class github():
         self.outputs = {"github_repositories": []}
         yaml_data=loadValues('github')
         for repo in yaml_data['github_repositories']:
-            desc = executeProcess(f"curl -L --silent https://github.com/{repo} | grep '<title>' | xargs | sed 's/<[^>]*>//g'")
-            self.outputs['github_repositories'] += [{"url": f"https://github.com/{repo}", "description": f"{desc.strip()}", "repo": repo }]
+            desc = executeProcess(f"curl -L --silent https://github.com/{repo.name} | grep '<title>' | xargs | sed 's/<[^>]*>//g'")
+            self.outputs['github_repositories'] += [{"url": f"https://github.com/{repo.name}", "description": f"{desc.strip()}", "repo": repo.name }]
         # Write the final value file.
         writeYaml(self.outputs, f"{outputdir}/github-values.yaml")
         # Render the templates against the value file.
