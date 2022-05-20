@@ -26,7 +26,11 @@ github_repositories:
       curl -L "https://github.com/zricethezav/gitleaks/releases/download/$(curl -L -s "https://api.github.com/repos/zricethezav/gitleaks/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1)/gitleaks_$(curl -L -s "https://api.github.com/repos/zricethezav/gitleaks/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1 | cut -c2- )_linux_x64.tar.gz" | sudo tar -C /usr/bin -xzv
   - name: Jaydee94/kubeseal-webgui
     install: ""
-  
+
+awesome_list:
+  - name: "Diagram designers"
+    url: https://github.com/robbie-cao/awesome-diagrams
+
 helms_charts:
   - https://github.com/bitnami/charts/tree/master/bitnami/argo-cd
 
