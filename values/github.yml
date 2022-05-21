@@ -47,8 +47,13 @@ github_repositories:
       curl -L "https://github.com/bitnami-labs/sealed-secrets/releases/download/$(curl -L -s "https://api.github.com/repos/bitnami-labs/sealed-secrets/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1)/kubeseal-$(curl -L -s "https://api.github.com/repos/bitnami-labs/sealed-secrets/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1 | cut -c2- )-linux-amd64.tar.gz" | sudo tar -C /usr/bin -xzv
 
 awesome_list:
-  - name: "Diagram designers"
-    url: https://github.com/robbie-cao/awesome-diagrams
+  websites:
+    - name: "Git planet"
+      url: https://gitplanet.com
+  curated_lst:
+    - name: "Diagram designers"
+      url: https://github.com/robbie-cao/awesome-diagrams
+     
 
 helms_charts:
   - https://github.com/bitnami/charts/tree/master/bitnami/argo-cd
