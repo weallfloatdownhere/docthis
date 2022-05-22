@@ -35,6 +35,9 @@ github_repositories:
   - name: emirozer/kubectl-doctor
     install: ""
   
+  - name: willhallonline/docker-ansible
+    install: ""
+  
   - name: zricethezav/gitleaks
     install: >
       curl -L "https://github.com/zricethezav/gitleaks/releases/download/$(curl -L -s "https://api.github.com/repos/zricethezav/gitleaks/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1)/gitleaks_$(curl -L -s "https://api.github.com/repos/zricethezav/gitleaks/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1 | cut -c2- )_linux_x64.tar.gz" | sudo tar -C /usr/bin -xzv
