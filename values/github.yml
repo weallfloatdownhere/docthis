@@ -23,6 +23,9 @@ github_repositories:
   - name: argoproj-labs/argocd-image-updater
     install: ""
   
+  - name: rancher/system-upgrade-controller
+    install: ""
+  
   - name: archlinux/archinstall
     install: ""
   
