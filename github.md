@@ -39,6 +39,11 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/argoproj-labs/argocd-image-updater) ![GitHub Repo stars](https://img.shields.io/github/stars/argoproj-labs/argocd-image-updater?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/argoproj-labs/argocd-image-updater)
 
 
+[***GitHub - rancher/system-upgrade-controller: In your Kubernetes, upgrading your nodes***](https://github.com/rancher/system-upgrade-controller)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/rancher/system-upgrade-controller) ![GitHub Repo stars](https://img.shields.io/github/stars/rancher/system-upgrade-controller?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/rancher/system-upgrade-controller)
+
+
 [***GitHub - archlinux/archinstall: Arch Linux installer - guided, templates etc.***](https://github.com/archlinux/archinstall)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/archlinux/archinstall) ![GitHub Repo stars](https://img.shields.io/github/stars/archlinux/archinstall?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/archlinux/archinstall)
@@ -54,6 +59,16 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/chr4/shellrc) ![GitHub Repo stars](https://img.shields.io/github/stars/chr4/shellrc?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/chr4/shellrc)
 
 
+[***GitHub - emirozer/kubectl-doctor: kubectl cluster triage plugin for k8s - 🏥 (brew doctor equivalent)***](https://github.com/emirozer/kubectl-doctor)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/emirozer/kubectl-doctor) ![GitHub Repo stars](https://img.shields.io/github/stars/emirozer/kubectl-doctor?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/emirozer/kubectl-doctor)
+
+
+[***GitHub - willhallonline/docker-ansible: Ansible inside Docker containers: Alpine, Ubuntu, Centos &amp; Debian with Ansible 2.12, 2.11, 2.10 and 2.9 + Mitogen***](https://github.com/willhallonline/docker-ansible)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/willhallonline/docker-ansible) ![GitHub Repo stars](https://img.shields.io/github/stars/willhallonline/docker-ansible?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/willhallonline/docker-ansible)
+
+
 [***GitHub - zricethezav/gitleaks: Scan git repos (or files) for secrets using regex and entropy 🔑***](https://github.com/zricethezav/gitleaks)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/zricethezav/gitleaks) ![GitHub Repo stars](https://img.shields.io/github/stars/zricethezav/gitleaks?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/zricethezav/gitleaks)
@@ -62,6 +77,25 @@
 ```bash
 
 $ curl -L "https://github.com/zricethezav/gitleaks/releases/download/$(curl -L -s "https://api.github.com/repos/zricethezav/gitleaks/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1)/gitleaks_$(curl -L -s "https://api.github.com/repos/zricethezav/gitleaks/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1 | cut -c2- )_linux_x64.tar.gz" | sudo tar -C /usr/bin -xzv
+
+
+```
+
+
+
+[***GitHub - Jaydee94/kubeseal-webgui: This is a python based webapp for using Bitnami-Sealed-Secrets in a web-ui.***](https://github.com/Jaydee94/kubeseal-webgui)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/Jaydee94/kubeseal-webgui) ![GitHub Repo stars](https://img.shields.io/github/stars/Jaydee94/kubeseal-webgui?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/Jaydee94/kubeseal-webgui)
+
+
+[***GitHub - bitnami-labs/sealed-secrets: A Kubernetes controller and tool for one-way encrypted Secrets***](https://github.com/bitnami-labs/sealed-secrets)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/bitnami-labs/sealed-secrets) ![GitHub Repo stars](https://img.shields.io/github/stars/bitnami-labs/sealed-secrets?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/bitnami-labs/sealed-secrets)
+***Install script***
+
+```bash
+
+$ curl -L "https://github.com/bitnami-labs/sealed-secrets/releases/download/$(curl -L -s "https://api.github.com/repos/bitnami-labs/sealed-secrets/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1)/kubeseal-$(curl -L -s "https://api.github.com/repos/bitnami-labs/sealed-secrets/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1 | cut -c2- )-linux-amd64.tar.gz" | sudo tar -C /usr/bin -xzv
 
 
 ```
