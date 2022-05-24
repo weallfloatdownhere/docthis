@@ -2,6 +2,9 @@ github_repositories:
   - name: helm/helm
     install: ""
   
+  - name: cloudposse/charts
+    install: ""
+  
   - name: go-task/task
     install: ""
   
