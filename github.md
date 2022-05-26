@@ -4,6 +4,11 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/helm/helm) ![GitHub Repo stars](https://img.shields.io/github/stars/helm/helm?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/helm/helm)
 
 
+[***GitHub - helm/charts: ⚠️(OBSOLETE) Curated applications for Kubernetes***](https://github.com/helm/charts)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/helm/charts) ![GitHub Repo stars](https://img.shields.io/github/stars/helm/charts?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/helm/charts)
+
+
 [***GitHub - go-task/task: A task runner / simpler Make alternative written in Go***](https://github.com/go-task/task)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/go-task/task) ![GitHub Repo stars](https://img.shields.io/github/stars/go-task/task?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/go-task/task)
