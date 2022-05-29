@@ -62,6 +62,8 @@ github_repositories:
     install: >
       (curl -L --silent https://github.com/argoproj-labs/argocd-autopilot/releases/download/$(curl -L -s "https://api.github.com/repos/argoproj-labs/argocd-autopilot/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1)/argocd-autopilot-linux-amd64.tar.gz | tar zx) && mv ./argocd-autopilot-* ./argocd-autopilot
       
+  - name: redhat-cop/patch-operator
+    install: ""
 
 awesome_list:
   websites:
