@@ -32,6 +32,9 @@ github_repositories:
   - name: archlinux/archinstall
     install: ""
   
+  - name: sensepost/Frack
+    install: ""
+  
   - name: cloudposse/charts
     install: ""
   
