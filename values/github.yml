@@ -32,6 +32,9 @@ github_repositories:
   
   - name: zakjan/cert-chain-resolver
     install: ""
+    
+  - name: cert-manager/cert-manager
+    install: ""
   
   - name: gravitational/teleport
     install: ""
