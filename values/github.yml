@@ -15,6 +15,12 @@ github_repositories:
   - name: k8s-at-home/template-cluster-k3s
     install: ""
   
+  - name: stakater/Reloader
+    install: ""
+    
+  - name: emberstack/kubernetes-reflector
+    install: ""
+  
   - name: go-task/task
     install: ""
   
