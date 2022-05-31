@@ -12,6 +12,9 @@ github_repositories:
   - name: bitnami/charts
     install: ""
   
+  - name: kubernetes-sigs/kubespray
+    install: ""
+  
   - name: k8s-at-home/template-cluster-k3s
     install: ""
   
