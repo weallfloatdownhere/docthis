@@ -9,6 +9,40 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/helm/charts) ![GitHub Repo stars](https://img.shields.io/github/stars/helm/charts?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/helm/charts)
 
 
+[***GitHub - helm/chart-releaser: Hosting Helm Charts via GitHub Pages and Releases***](https://github.com/helm/chart-releaser)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/helm/chart-releaser) ![GitHub Repo stars](https://img.shields.io/github/stars/helm/chart-releaser?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/helm/chart-releaser)
+***Install script***
+
+```bash
+
+$ curl -L "https://github.com/helm/chart-releaser/releases/download/$(curl -L -s "https://api.github.com/repos/helm/chart-releaser/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1)/chart-releaser_$(curl -L -s "https://api.github.com/repos/helm/chart-releaser/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1 | cut -c2- )_linux_amd64.tar.gz" | sudo tar -C /usr/bin -xzv
+
+
+```
+
+
+
+[***GitHub - bitnami/charts: Bitnami Helm Charts***](https://github.com/bitnami/charts)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/bitnami/charts) ![GitHub Repo stars](https://img.shields.io/github/stars/bitnami/charts?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/bitnami/charts)
+
+
+[***GitHub - k8s-at-home/template-cluster-k3s: Highly opinionated template for deploying a single k3s cluster with Ansible and Terraform backed by Flux, SOPS, GitHub Actions, Renovate and more!***](https://github.com/k8s-at-home/template-cluster-k3s)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/k8s-at-home/template-cluster-k3s) ![GitHub Repo stars](https://img.shields.io/github/stars/k8s-at-home/template-cluster-k3s?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/k8s-at-home/template-cluster-k3s)
+
+
+[***GitHub - stakater/Reloader: A Kubernetes controller to watch changes in ConfigMap and Secrets and do rolling upgrades on Pods with their associated Deployment, StatefulSet, DaemonSet and DeploymentConfig – [✩Star] if you&#39;re using it!***](https://github.com/stakater/Reloader)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/stakater/Reloader) ![GitHub Repo stars](https://img.shields.io/github/stars/stakater/Reloader?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/stakater/Reloader)
+
+
+[***GitHub - emberstack/kubernetes-reflector: Custom Kubernetes controller that can be used to replicate secrets, configmaps and certificates.***](https://github.com/emberstack/kubernetes-reflector)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/emberstack/kubernetes-reflector) ![GitHub Repo stars](https://img.shields.io/github/stars/emberstack/kubernetes-reflector?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/emberstack/kubernetes-reflector)
+
+
 [***GitHub - go-task/task: A task runner / simpler Make alternative written in Go***](https://github.com/go-task/task)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/go-task/task) ![GitHub Repo stars](https://img.shields.io/github/stars/go-task/task?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/go-task/task)
@@ -27,6 +61,11 @@
 [***GitHub - zakjan/cert-chain-resolver: SSL certificate chain resolver***](https://github.com/zakjan/cert-chain-resolver)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/zakjan/cert-chain-resolver) ![GitHub Repo stars](https://img.shields.io/github/stars/zakjan/cert-chain-resolver?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/zakjan/cert-chain-resolver)
+
+
+[***GitHub - cert-manager/cert-manager: Automatically provision and manage TLS certificates in Kubernetes***](https://github.com/cert-manager/cert-manager)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/cert-manager/cert-manager) ![GitHub Repo stars](https://img.shields.io/github/stars/cert-manager/cert-manager?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/cert-manager/cert-manager)
 
 
 [***GitHub - gravitational/teleport: Certificate authority and access plane for SSH, Kubernetes, web apps, databases and desktops***](https://github.com/gravitational/teleport)
@@ -54,6 +93,11 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/archlinux/archinstall) ![GitHub Repo stars](https://img.shields.io/github/stars/archlinux/archinstall?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/archlinux/archinstall)
 
 
+[***GitHub - sensepost/Frack: Frack - Keep and Maintain your breach data***](https://github.com/sensepost/Frack)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/sensepost/Frack) ![GitHub Repo stars](https://img.shields.io/github/stars/sensepost/Frack?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/sensepost/Frack)
+
+
 [***GitHub - cloudposse/charts: The &quot;Cloud Posse&quot; Distribution of Kubernetes Applications***](https://github.com/cloudposse/charts)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/cloudposse/charts) ![GitHub Repo stars](https://img.shields.io/github/stars/cloudposse/charts?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/cloudposse/charts)
@@ -74,7 +118,7 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/willhallonline/docker-ansible) ![GitHub Repo stars](https://img.shields.io/github/stars/willhallonline/docker-ansible?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/willhallonline/docker-ansible)
 
 
-[***GitHub - zricethezav/gitleaks: Scan git repos (or files) for secrets using regex and entropy 🔑***](https://github.com/zricethezav/gitleaks)
+[***GitHub - zricethezav/gitleaks: Protect and discover secrets using Gitleaks 🔑***](https://github.com/zricethezav/gitleaks)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/zricethezav/gitleaks) ![GitHub Repo stars](https://img.shields.io/github/stars/zricethezav/gitleaks?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/zricethezav/gitleaks)
 ***Install script***
@@ -105,5 +149,24 @@ $ curl -L "https://github.com/bitnami-labs/sealed-secrets/releases/download/$(cu
 
 ```
 
+
+
+[***GitHub - argoproj-labs/argocd-autopilot: Argo-CD Autopilot***](https://github.com/argoproj-labs/argocd-autopilot)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/argoproj-labs/argocd-autopilot) ![GitHub Repo stars](https://img.shields.io/github/stars/argoproj-labs/argocd-autopilot?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/argoproj-labs/argocd-autopilot)
+***Install script***
+
+```bash
+
+$ (curl -L --silent https://github.com/argoproj-labs/argocd-autopilot/releases/download/$(curl -L -s "https://api.github.com/repos/argoproj-labs/argocd-autopilot/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1)/argocd-autopilot-linux-amd64.tar.gz | tar zx) && mv ./argocd-autopilot-* ./argocd-autopilot
+
+
+```
+
+
+
+[***GitHub - redhat-cop/patch-operator: An operator to apply patches to Kubernetes objects in a declarative way.***](https://github.com/redhat-cop/patch-operator)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/redhat-cop/patch-operator) ![GitHub Repo stars](https://img.shields.io/github/stars/redhat-cop/patch-operator?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/redhat-cop/patch-operator)
 
 
