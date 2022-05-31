@@ -15,9 +15,7 @@
 ***Install script***
 
 ```bash
-
 $ curl -L "https://github.com/helm/chart-releaser/releases/download/$(curl -L -s "https://api.github.com/repos/helm/chart-releaser/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1)/chart-releaser_$(curl -L -s "https://api.github.com/repos/helm/chart-releaser/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1 | cut -c2- )_linux_amd64.tar.gz" | sudo tar -C /usr/bin -xzv
-
 
 ```
 
@@ -26,6 +24,11 @@ $ curl -L "https://github.com/helm/chart-releaser/releases/download/$(curl -L -s
 [***GitHub - bitnami/charts: Bitnami Helm Charts***](https://github.com/bitnami/charts)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/bitnami/charts) ![GitHub Repo stars](https://img.shields.io/github/stars/bitnami/charts?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/bitnami/charts)
+
+
+[***GitHub - kubernetes-sigs/kubespray: Deploy a Production Ready Kubernetes Cluster***](https://github.com/kubernetes-sigs/kubespray)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/kubernetes-sigs/kubespray) ![GitHub Repo stars](https://img.shields.io/github/stars/kubernetes-sigs/kubespray?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/kubernetes-sigs/kubespray)
 
 
 [***GitHub - k8s-at-home/template-cluster-k3s: Highly opinionated template for deploying a single k3s cluster with Ansible and Terraform backed by Flux, SOPS, GitHub Actions, Renovate and more!***](https://github.com/k8s-at-home/template-cluster-k3s)
@@ -124,9 +127,7 @@ $ curl -L "https://github.com/helm/chart-releaser/releases/download/$(curl -L -s
 ***Install script***
 
 ```bash
-
 $ curl -L "https://github.com/zricethezav/gitleaks/releases/download/$(curl -L -s "https://api.github.com/repos/zricethezav/gitleaks/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1)/gitleaks_$(curl -L -s "https://api.github.com/repos/zricethezav/gitleaks/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1 | cut -c2- )_linux_x64.tar.gz" | sudo tar -C /usr/bin -xzv
-
 
 ```
 
@@ -143,9 +144,7 @@ $ curl -L "https://github.com/zricethezav/gitleaks/releases/download/$(curl -L -
 ***Install script***
 
 ```bash
-
 $ curl -L "https://github.com/bitnami-labs/sealed-secrets/releases/download/$(curl -L -s "https://api.github.com/repos/bitnami-labs/sealed-secrets/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1)/kubeseal-$(curl -L -s "https://api.github.com/repos/bitnami-labs/sealed-secrets/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1 | cut -c2- )-linux-amd64.tar.gz" | sudo tar -C /usr/bin -xzv
-
 
 ```
 
@@ -157,9 +156,7 @@ $ curl -L "https://github.com/bitnami-labs/sealed-secrets/releases/download/$(cu
 ***Install script***
 
 ```bash
-
 $ (curl -L --silent https://github.com/argoproj-labs/argocd-autopilot/releases/download/$(curl -L -s "https://api.github.com/repos/argoproj-labs/argocd-autopilot/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1)/argocd-autopilot-linux-amd64.tar.gz | tar zx) && mv ./argocd-autopilot-* ./argocd-autopilot
-
 
 ```
 
