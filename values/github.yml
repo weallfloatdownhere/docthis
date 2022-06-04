@@ -18,6 +18,9 @@ github_repositories:
   - name: bitnami/charts
     install: ""
   
+  - name: argoproj/argocd-example-apps
+    install: ""
+  
   - name: kubernetes-sigs/kubespray
     install: ""
   
