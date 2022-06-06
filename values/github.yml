@@ -7,6 +7,9 @@ github_repositories:
   
   - name: xwmx/nb
     install: ""
+    
+  - name: smallstep/cli
+    install: ""
   
   - name: mkdocs/mkdocs
     install: ""
