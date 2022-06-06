@@ -5,6 +5,9 @@ github_repositories:
   - name: helm/charts
     install: ""
   
+  - name: xwmx/nb
+    install: ""
+  
   - name: mkdocs/mkdocs
     install: ""
   
