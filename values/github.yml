@@ -106,6 +106,8 @@ awesome_list:
   curated_lst:
     - name: "Diagram designers"
       url: https://github.com/robbie-cao/awesome-diagrams
+    - name: "Awesome CI"
+      url: https://awesomeopensource.com/project/CodyReichert/awesome-cl
      
 
 helms_charts:
