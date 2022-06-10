@@ -18,6 +18,9 @@ github_repositories:
     install: >
       curl -L "https://github.com/helm/chart-releaser/releases/download/$(curl -L -s "https://api.github.com/repos/helm/chart-releaser/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1)/chart-releaser_$(curl -L -s "https://api.github.com/repos/helm/chart-releaser/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1 | cut -c2- )_linux_amd64.tar.gz" | sudo tar -C /usr/bin -xzv
   
+  - name: vidispine/hull
+    install: ""
+  
   - name: helm/chartmuseum
     install: ""
   
