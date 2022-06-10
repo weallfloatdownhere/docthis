@@ -2,6 +2,9 @@ github_repositories:
   - name: helm/helm
     install: ""
   
+  - name: ovity/octotree
+    install: ""
+  
   - name: helm/charts
     install: ""
   
