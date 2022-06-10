@@ -48,12 +48,12 @@ class github():
         # Write the final value file.
         writeYaml(self.outputs, f"{outputdir}/github-values.yaml")
         # Render the templates against the value file.
-        if os.path.exists(f"{outputdir}/github.md"): os.remove(f"{outputdir}/github.md")
-        executeProcess(f"jinja2 {SCRIPT_PATH}/templates/github.tmpl {outputdir}/github-values.yaml --format=yaml > {outputdir}/github.md")
+        if os.path.exists(f"{outputdir}/README.md"): os.remove(f"{outputdir}/README.md")
+        executeProcess(f"jinja2 {SCRIPT_PATH}/templates/github.tmpl {outputdir}/github-values.yaml --format=yaml > {outputdir}/README.md")
         # Remove temporary generated values files.
         if os.path.exists(f"{outputdir}/github-values.yaml"): os.remove(f"{outputdir}/github-values.yaml")
         # Return
-        self.outputFile = f"{outputdir}/github.md"
+        self.outputFile = f"{outputdir}/README.md"
 
 # Command
 
