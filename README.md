@@ -18,6 +18,7 @@ $ pip3 install -r requirements.txt
 
 ```bash
 $ p3 docthis.py generate .
+$ git status && git add . && git commit -m "updating doc" && git push
 ```
 
 ## Dependencies

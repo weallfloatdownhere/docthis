@@ -9,6 +9,21 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/helm/charts) ![GitHub Repo stars](https://img.shields.io/github/stars/helm/charts?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/helm/charts)
 
 
+[***GitHub - xwmx/nb: CLI and local web plain text note‑taking, bookmarking, and archiving with linking, tagging, filtering, search, Git versioning &amp; syncing, Pandoc conversion, + more, in a single portable script.***](https://github.com/xwmx/nb)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/xwmx/nb) ![GitHub Repo stars](https://img.shields.io/github/stars/xwmx/nb?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/xwmx/nb)
+
+
+[***GitHub - smallstep/cli: 🧰 A zero trust swiss army knife for working with X509, OAuth, JWT, OATH OTP, etc.***](https://github.com/smallstep/cli)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/smallstep/cli) ![GitHub Repo stars](https://img.shields.io/github/stars/smallstep/cli?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/smallstep/cli)
+
+
+[***GitHub - mkdocs/mkdocs: Project documentation with Markdown.***](https://github.com/mkdocs/mkdocs)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/mkdocs/mkdocs) ![GitHub Repo stars](https://img.shields.io/github/stars/mkdocs/mkdocs?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/mkdocs/mkdocs)
+
+
 [***GitHub - helm/chart-releaser: Hosting Helm Charts via GitHub Pages and Releases***](https://github.com/helm/chart-releaser)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/helm/chart-releaser) ![GitHub Repo stars](https://img.shields.io/github/stars/helm/chart-releaser?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/helm/chart-releaser)
@@ -21,9 +36,24 @@ $ curl -L "https://github.com/helm/chart-releaser/releases/download/$(curl -L -s
 
 
 
+[***GitHub - helm/chartmuseum: Host your own Helm Chart Repository***](https://github.com/helm/chartmuseum)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/helm/chartmuseum) ![GitHub Repo stars](https://img.shields.io/github/stars/helm/chartmuseum?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/helm/chartmuseum)
+
+
+[***GitHub - Datalux/Osintgram: Osintgram is a OSINT tool on Instagram. It offers an interactive shell to perform analysis on Instagram account of any users by its nickname***](https://github.com/Datalux/Osintgram)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/Datalux/Osintgram) ![GitHub Repo stars](https://img.shields.io/github/stars/Datalux/Osintgram?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/Datalux/Osintgram)
+
+
 [***GitHub - bitnami/charts: Bitnami Helm Charts***](https://github.com/bitnami/charts)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/bitnami/charts) ![GitHub Repo stars](https://img.shields.io/github/stars/bitnami/charts?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/bitnami/charts)
+
+
+[***GitHub - argoproj/argocd-example-apps: Example Apps to Demonstrate Argo CD***](https://github.com/argoproj/argocd-example-apps)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/argoproj/argocd-example-apps) ![GitHub Repo stars](https://img.shields.io/github/stars/argoproj/argocd-example-apps?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/argoproj/argocd-example-apps)
 
 
 [***GitHub - kubernetes-sigs/kubespray: Deploy a Production Ready Kubernetes Cluster***](https://github.com/kubernetes-sigs/kubespray)
@@ -31,7 +61,7 @@ $ curl -L "https://github.com/helm/chart-releaser/releases/download/$(curl -L -s
 ![GitHub last commit](https://img.shields.io/github/last-commit/kubernetes-sigs/kubespray) ![GitHub Repo stars](https://img.shields.io/github/stars/kubernetes-sigs/kubespray?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/kubernetes-sigs/kubespray)
 
 
-[***GitHub - k8s-at-home/template-cluster-k3s: Highly opinionated template for deploying a single k3s cluster with Ansible and Terraform backed by Flux, SOPS, GitHub Actions, Renovate and more!***](https://github.com/k8s-at-home/template-cluster-k3s)
+[***GitHub - k8s-at-home/flux-cluster-template: Highly opinionated template for deploying a single Kubernetes (k3s) cluster with Ansible and Terraform backed by Flux, SOPS, GitHub Actions, Renovate and more!***](https://github.com/k8s-at-home/template-cluster-k3s)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/k8s-at-home/template-cluster-k3s) ![GitHub Repo stars](https://img.shields.io/github/stars/k8s-at-home/template-cluster-k3s?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/k8s-at-home/template-cluster-k3s)
 
