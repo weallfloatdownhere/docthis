@@ -29,6 +29,9 @@ github_repositories:
   
   - name: bitnami/charts
     install: ""
+    
+  - name: kubernetes/autoscaler
+    install: ""
   
   - name: argoproj/argocd-example-apps
     install: ""
