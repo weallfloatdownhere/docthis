@@ -2,6 +2,9 @@ github_repositories:
   - name: helm/helm
     install: ""
   
+  - name: xUnholy/k8s-gitops
+    install: ""
+  
   - name: gnunn-gitops/standards
     install: ""
   
