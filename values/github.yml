@@ -8,6 +8,10 @@ github_repositories:
   - name: gnunn-gitops/standards
     install: ""
   
+
+  - name: lepture/mistune
+    install: ""
+
   - name: ovity/octotree
     install: ""
   
