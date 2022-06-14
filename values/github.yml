@@ -80,7 +80,8 @@ github_repositories:
     install: ""
   
   - name: go-task/task
-    install: ""
+    install: "sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin"
+    website: https://blog.stephane-robert.info/post/taskfile-build-runner-tache/
   
   - name: megadose/holehe
     install: ""
