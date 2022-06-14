@@ -6,6 +6,9 @@ github_repositories:
     install: |
       curl -L "https://github.com/nektos/act/releases/download/$(curl -L -s "https://api.github.com/repos/nektos/act/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")')/act_Linux_x86_64.tar.gz" | tar --extract -C ~/.local/bin -zxvf -
    
+  - name: k8s-at-home/flux-cluster-template
+    install: ""
+   
   - name: FiloSottile/age
     install: |
       curl -L "https://github.com/FiloSottile/age/releases/download/$(curl -L -s "https://api.github.com/repos/FiloSottile/age/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")')/age-$(curl -L -s "https://api.github.com/repos/FiloSottile/age/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")')-linux-amd64.tar.gz" | tar --extract -C ~/.local/bin --strip=1 -zxvf -
