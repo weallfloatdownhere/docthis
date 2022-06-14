@@ -43,7 +43,7 @@ class githubRepo():
         self.repo_name = repo_yaml['name']
         self.description = executeProcess(f"curl -L --silent https://github.com/{self.repo_name} | grep '<title>' | xargs | sed 's/<[^>]*>//g'")
         src_readme = getHtmlFromUrl(f"https://raw.githubusercontent.com/{self.repo_name}/main/README.md")
-        self.readme = src_readme if "404 not found" not in src_readme else ''
+        self.readme = src_readme if "404" not in src_readme and len(src_readme) > 20 else ''
         self.installer = repo_yaml['install'] if repo_yaml['install'] else ''
 
 class github():
