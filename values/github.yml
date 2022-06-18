@@ -3,8 +3,11 @@ github_repositories:
     install: ""
     
   - name: mikefarah/yq
-    install |-
+    install: |-
       curl -L --silent "https://github.com/mikefarah/yq/releases/download/$(curl -L -s "https://api.github.com/repos/mikefarah/yq/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")')/yq_linux_amd64" -o /bin/yq && chmod +x /bin/yq
+    
+  - name: google/python-fire
+    install: ""
     
   - name: nektos/act
     install: |-
@@ -88,7 +91,6 @@ github_repositories:
     install: |-
       sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
     
-  
   - name: megadose/holehe
     install: ""
   
@@ -144,7 +146,7 @@ github_repositories:
 
   - name: argoproj-labs/argocd-autopilot
     install: |-
-      (curl -L --silent https://github.com/argoproj-labs/argocd-autopilot/releases/download/$(curl -L -s "https://api.github.com/repos/argoproj-labs/argocd-autopilot/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1)/argocd-autopilot-linux-amd64.tar.gz | tar zx) && mv ./argocd-autopilot-* ./argocd-autopilot
+      curl -L --silent https://github.com/argoproj-labs/argocd-autopilot/releases/download/$(curl -L -s "https://api.github.com/repos/argoproj-labs/argocd-autopilot/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1)/argocd-autopilot-linux-amd64.tar.gz | tar zx && mv ./argocd-autopilot-* ./argocd-autopilot
       
   - name: redhat-cop/patch-operator
     install: ""
