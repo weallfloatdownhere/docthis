@@ -2,6 +2,9 @@ github_repositories:
   - name: helm/helm
     install: ""
     
+  - name: mogensen/kubernetes-split-yaml
+    install: ""
+    
   - name: mikefarah/yq
     install: |-
       curl -L --silent "https://github.com/mikefarah/yq/releases/download/$(curl -L -s "https://api.github.com/repos/mikefarah/yq/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")')/yq_linux_amd64" -o /bin/yq && chmod +x /bin/yq
