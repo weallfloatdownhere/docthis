@@ -1,10 +1,14 @@
-
 ## Refresh markdown files content.
 
 ```bash
 cd $(mktemp -d) && git clone https://github.com/weallfloatdownhere/docthis.git .&& python3 docthis.py generate . && git add . && git commit -m "Regen README" && git push
 ```
----[***GitHub - helm/helm: The Kubernetes Package Manager***](https://github.com/helm/helm)
+
+---
+
+
+
+[***GitHub - helm/helm: The Kubernetes Package Manager***](https://github.com/helm/helm)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/helm/helm) ![GitHub Repo stars](https://img.shields.io/github/stars/helm/helm?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/helm/helm)<details>
 
@@ -85,14 +89,36 @@ You can reach the Helm community and developers via the following channels:
 Participation in the Helm community is governed by the [Code of Conduct](code-of-conduct.md).
 
 
-</details>[***GitHub - nektos/act: Run your GitHub Actions locally 🚀***](https://github.com/nektos/act)
+</details>
 
-![GitHub last commit](https://img.shields.io/github/last-commit/nektos/act) ![GitHub Repo stars](https://img.shields.io/github/stars/nektos/act?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/nektos/act)***QUICK INSTALL***
+
+[***GitHub - mikefarah/yq: yq is a portable command-line YAML, JSON and XML processor***](https://github.com/mikefarah/yq)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/mikefarah/yq) ![GitHub Repo stars](https://img.shields.io/github/stars/mikefarah/yq?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/mikefarah/yq)
+***QUICK INSTALL***
+
+```bash
+curl -L --silent "https://github.com/mikefarah/yq/releases/download/$(curl -L -s "https://api.github.com/repos/mikefarah/yq/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")')/yq_linux_amd64" -o /bin/yq && chmod +x /bin/yq
+```
+
+[***GitHub - cookiecutter/cookiecutter: A cross-platform command-line utility that creates projects from cookiecutters (project templates), e.g. Python package projects, C projects.***](https://github.com/cookiecutter/cookiecutter)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/cookiecutter/cookiecutter) ![GitHub Repo stars](https://img.shields.io/github/stars/cookiecutter/cookiecutter?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/cookiecutter/cookiecutter)
+
+[***GitHub - google/python-fire: Python Fire is a library for automatically generating command line interfaces (CLIs) from absolutely any Python object.***](https://github.com/google/python-fire)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/google/python-fire) ![GitHub Repo stars](https://img.shields.io/github/stars/google/python-fire?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/google/python-fire)
+
+[***GitHub - nektos/act: Run your GitHub Actions locally 🚀***](https://github.com/nektos/act)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/nektos/act) ![GitHub Repo stars](https://img.shields.io/github/stars/nektos/act?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/nektos/act)
+***QUICK INSTALL***
 
 ```bash
 curl -L "https://github.com/nektos/act/releases/download/$(curl -L -s "https://api.github.com/repos/nektos/act/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")')/act_Linux_x86_64.tar.gz" | tar --extract -C ~/.local/bin -zxvf -
+```
 
-```[***GitHub - k8s-at-home/flux-cluster-template: Highly opinionated template for deploying a single Kubernetes (k3s) cluster with Ansible and Terraform backed by Flux, SOPS, GitHub Actions, Renovate and more!***](https://github.com/k8s-at-home/flux-cluster-template)
+[***GitHub - k8s-at-home/flux-cluster-template: Highly opinionated template for deploying a single Kubernetes (k3s) cluster with Ansible and Terraform backed by Flux, SOPS, GitHub Actions, Renovate and more!***](https://github.com/k8s-at-home/flux-cluster-template)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/k8s-at-home/flux-cluster-template) ![GitHub Repo stars](https://img.shields.io/github/stars/k8s-at-home/flux-cluster-template?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/k8s-at-home/flux-cluster-template)<details>
 
@@ -464,6 +490,12 @@ task cluster:resources
     task cluster:certificates
     ```
 
+7. View all the ingresses
+
+    ```sh
+    task cluster:ingresses
+    ```
+
 🏆 **Congratulations** if all goes smooth you'll have a Kubernetes cluster managed by Flux, your Git repository is driving the state of your cluster.
 
 ☢️ If you run into problems, you can run `task ansible:nuke` to destroy the k3s cluster and start over.
@@ -559,7 +591,7 @@ The benefits of a public repository include:
       ssh-keygen -t ecdsa -b 521 -C "github-deploy-key" -f ./cluster/github-deploy-key -q -P ""
       ```
   2. Paste public key in the deploy keys section of your repository settings
-  3. Create sops secret in `cluster/base/flux-system/github-deploy-key.sops.yaml` with the contents of:
+  3. Create sops secret in `cluster/flux/flux-system/github-deploy-key.sops.yaml` with the contents of:
       ```yaml
       # yamllint disable
       apiVersion: v1
@@ -581,19 +613,19 @@ The benefits of a public repository include:
       ```
   4. Encrypt secret:
       ```sh
-      sops --encrypt --in-place ./cluster/base/flux-system/github-deploy-key.sops.yaml
+      sops --encrypt --in-place ./cluster/flux/flux-system/github-deploy-key.sops.yaml
       ```
   5. Apply secret to cluster:
       ```sh
-      sops --decrypt cluster/base/flux-system/github-deploy-key.sops.yaml | kubectl apply -f -
+      sops --decrypt cluster/flux/flux-system/github-deploy-key.sops.yaml | kubectl apply -f -
       ```
-  6.  Update `cluster/base/flux-system/gotk-sync.yaml`:
+  6.  Update `cluster/flux/flux-system/flux-cluster.yaml`:
       ```yaml
       ---
       apiVersion: source.toolkit.fluxcd.io/v1beta2
       kind: GitRepository
       metadata:
-        name: flux-installation
+        name: flux-cluster
         namespace: flux-system
       spec:
         interval: 10m
@@ -637,13 +669,16 @@ Community member @Whazor created [this website](https://whazor.github.io/k8s-at-
 Many people have shared their awesome repositories over at [awesome-home-kubernetes](https://github.com/k8s-at-home/awesome-home-kubernetes).
 
 
-</details>[***GitHub - FiloSottile/age: A simple, modern and secure encryption tool (and Go library) with small explicit keys, no config options, and UNIX-style composability.***](https://github.com/FiloSottile/age)
+</details>
 
-![GitHub last commit](https://img.shields.io/github/last-commit/FiloSottile/age) ![GitHub Repo stars](https://img.shields.io/github/stars/FiloSottile/age?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/FiloSottile/age)***QUICK INSTALL***
+
+[***GitHub - FiloSottile/age: A simple, modern and secure encryption tool (and Go library) with small explicit keys, no config options, and UNIX-style composability.***](https://github.com/FiloSottile/age)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/FiloSottile/age) ![GitHub Repo stars](https://img.shields.io/github/stars/FiloSottile/age?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/FiloSottile/age)
+***QUICK INSTALL***
 
 ```bash
 curl -L "https://github.com/FiloSottile/age/releases/download/$(curl -L -s "https://api.github.com/repos/FiloSottile/age/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")')/age-$(curl -L -s "https://api.github.com/repos/FiloSottile/age/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")')-linux-amd64.tar.gz" | tar --extract -C ~/.local/bin --strip=1 -zxvf -
-
 ```<details>
 
 <summary>README</summary> 
@@ -896,17 +931,30 @@ go install filippo.io/age/cmd/...@latest
 Help from new packagers is very welcome.
 
 
-</details>[***GitHub - xUnholy/k8s-gitops: Kubernetes cluster managed by GitOps - Git as a single source of truth, automated pipelines, declarative everything, next-generation DevOps***](https://github.com/xUnholy/k8s-gitops)
+</details>
 
-![GitHub last commit](https://img.shields.io/github/last-commit/xUnholy/k8s-gitops) ![GitHub Repo stars](https://img.shields.io/github/stars/xUnholy/k8s-gitops?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/xUnholy/k8s-gitops)[***GitHub - gnunn-gitops/standards: GitOps standards used in my other repos***](https://github.com/gnunn-gitops/standards)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/gnunn-gitops/standards) ![GitHub Repo stars](https://img.shields.io/github/stars/gnunn-gitops/standards?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/gnunn-gitops/standards)[***GitHub - lepture/mistune: A fast yet powerful Python Markdown parser with renderers and plugins.***](https://github.com/lepture/mistune)
+[***GitHub - xUnholy/k8s-gitops: Kubernetes cluster managed by GitOps - Git as a single source of truth, automated pipelines, declarative everything, next-generation DevOps***](https://github.com/xUnholy/k8s-gitops)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/lepture/mistune) ![GitHub Repo stars](https://img.shields.io/github/stars/lepture/mistune?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/lepture/mistune)[***GitHub - ovity/octotree: GitHub on steroids***](https://github.com/ovity/octotree)
+![GitHub last commit](https://img.shields.io/github/last-commit/xUnholy/k8s-gitops) ![GitHub Repo stars](https://img.shields.io/github/stars/xUnholy/k8s-gitops?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/xUnholy/k8s-gitops)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/ovity/octotree) ![GitHub Repo stars](https://img.shields.io/github/stars/ovity/octotree?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/ovity/octotree)[***GitHub - helm/charts: ⚠️(OBSOLETE) Curated applications for Kubernetes***](https://github.com/helm/charts)
+[***GitHub - gnunn-gitops/standards: GitOps standards used in my other repos***](https://github.com/gnunn-gitops/standards)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/helm/charts) ![GitHub Repo stars](https://img.shields.io/github/stars/helm/charts?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/helm/charts)[***GitHub - xwmx/nb: CLI and local web plain text note‑taking, bookmarking, and archiving with linking, tagging, filtering, search, Git versioning &amp; syncing, Pandoc conversion, + more, in a single portable script.***](https://github.com/xwmx/nb)
+![GitHub last commit](https://img.shields.io/github/last-commit/gnunn-gitops/standards) ![GitHub Repo stars](https://img.shields.io/github/stars/gnunn-gitops/standards?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/gnunn-gitops/standards)
+
+[***GitHub - lepture/mistune: A fast yet powerful Python Markdown parser with renderers and plugins.***](https://github.com/lepture/mistune)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/lepture/mistune) ![GitHub Repo stars](https://img.shields.io/github/stars/lepture/mistune?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/lepture/mistune)
+
+[***GitHub - ovity/octotree: GitHub on steroids***](https://github.com/ovity/octotree)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/ovity/octotree) ![GitHub Repo stars](https://img.shields.io/github/stars/ovity/octotree?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/ovity/octotree)
+
+[***GitHub - helm/charts: ⚠️(OBSOLETE) Curated applications for Kubernetes***](https://github.com/helm/charts)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/helm/charts) ![GitHub Repo stars](https://img.shields.io/github/stars/helm/charts?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/helm/charts)
+
+[***GitHub - xwmx/nb: CLI and local web plain text note‑taking, bookmarking, and archiving with linking, tagging, filtering, search, Git versioning &amp; syncing, Pandoc conversion, + more, in a single portable script.***](https://github.com/xwmx/nb)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/xwmx/nb) ![GitHub Repo stars](https://img.shields.io/github/stars/xwmx/nb?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/xwmx/nb)<details>
 
@@ -10222,16 +10270,21 @@ tests with globbing, e.g., `bats test/browse*` and `bats test/folders*`.
 </p>
 
 
-</details>[***GitHub - smallstep/cli: 🧰 A zero trust swiss army knife for working with X509, OAuth, JWT, OATH OTP, etc.***](https://github.com/smallstep/cli)
+</details>
 
-![GitHub last commit](https://img.shields.io/github/last-commit/smallstep/cli) ![GitHub Repo stars](https://img.shields.io/github/stars/smallstep/cli?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/smallstep/cli)[***GitHub - loft-sh/vcluster: vcluster - Create fully functional virtual Kubernetes clusters - Each vcluster runs inside a namespace of the underlying k8s cluster. It&#39;s cheaper than creating separate full-blown clusters and it offers better multi-tenancy and isolation than regular namespaces.***](https://github.com/loft-sh/vcluster)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/loft-sh/vcluster) ![GitHub Repo stars](https://img.shields.io/github/stars/loft-sh/vcluster?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/loft-sh/vcluster)***QUICK INSTALL***
+[***GitHub - smallstep/cli: 🧰 A zero trust swiss army knife for working with X509, OAuth, JWT, OATH OTP, etc.***](https://github.com/smallstep/cli)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/smallstep/cli) ![GitHub Repo stars](https://img.shields.io/github/stars/smallstep/cli?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/smallstep/cli)
+
+[***GitHub - loft-sh/vcluster: vcluster - Create fully functional virtual Kubernetes clusters - Each vcluster runs inside a namespace of the underlying k8s cluster. It&#39;s cheaper than creating separate full-blown clusters and it offers better multi-tenancy and isolation than regular namespaces.***](https://github.com/loft-sh/vcluster)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/loft-sh/vcluster) ![GitHub Repo stars](https://img.shields.io/github/stars/loft-sh/vcluster?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/loft-sh/vcluster)
+***QUICK INSTALL***
 
 ```bash
 curl -s -L "https://github.com/loft-sh/vcluster/releases/latest" | sed -nE 's!.*"([^"]*vcluster-linux-amd64)".*!https://github.com\1!p' | xargs -n 1 curl -L -o vcluster && chmod +x vcluster;
 sudo mv vcluster /usr/local/bin;
-
 ```<details>
 
 <summary>README</summary> 
@@ -10250,19 +10303,19 @@ Create fully functional virtual Kubernetes clusters - Each vcluster runs inside 
 
 ### Why Virtual Kubernetes Clusters?
 
-- **Cost Efficient**: much cheaper than "real" clusters (single pod and shared resources just like for namespaces)
-- **Fast Provisioning**: can be created and cleaned up again in seconds (great for CI/CD or testing)
-- **Cluster Scoped Resources**: more powerful than simple namespaces (virtual clusters allow users to use CRDs etc.)
-- **Cluster Wide Permissions**: allow users to install apps which require cluster-wide permissions while being limited to actually just one namespace within the host cluster
+- **Cluster Scoped Resources**: much more powerful than simple namespaces (virtual clusters allow users to use CRDs, namespaces, cluster roles etc.)
+- **Ease of Use**: usable in any Kubernetes cluster and created in seconds either via a single command or [cluster-api](https://github.com/loft-sh/cluster-api-provider-vcluster)
+- **Cost Efficient**: much cheaper and efficient than "real" clusters (single pod and shared resources just like for namespaces)
+- **Lightweight**: built upon the ultra-fast k3s distribution with minimal overhead per virtual cluster (other distributions work as well)
 - **Strict isolation**: complete separate Kubernetes control plane and access point for each vcluster while still being able to share certain services of the underlying host cluster
+- **Cluster Wide Permissions**: allow users to install apps which require cluster-wide permissions while being limited to actually just one namespace within the host cluster
 - **Great for Testing**: allow you to test different Kubernetes versions inside a single host cluster which may have a different version than the virtual clusters
 
 Learn more on [www.vcluster.com](https://vcluster.com).
 
 <br>
 
-## Architecture 
-[![vcluster Intro](docs/static/media/diagrams/vcluster-architecture.svg)](https://www.vcluster.com)
+![vcluster Intro](docs/static/media/vcluster-comparison.png)
 
 ![vcluster Compatibility](docs/static/media/cluster-compatibility.png)
 
@@ -10282,16 +10335,16 @@ Learn more in the [documentation](https://vcluster.com/docs/what-are-virtual-clu
 - **Certified Kubernetes Distribution** - vcluster itself is a [certified Kubernetes distribution](https://www.cncf.io/certification/software-conformance/) and is 100% Kubernetes API conform. Everything that works in a regular Kubernetes cluster works in vcluster
 - **Lightweight & Low-Overhead** - Based on k3s, bundled in a single pod and with super-low resource consumption. Other distributions such as k0s or vanilla k8s are also supported
 - **No Performance Degradation** - Pods are scheduled in the underlying host cluster, so they get no performance hit at all while running
-- **Reduced Overhead On Host Cluster** - Split up large multi-tenant clusters into smaller vcluster to reduce complexity and increase scalability. Since most vcluster api requests and objects will not reach the host cluster at all, vcluster can greatly decrease pressure on the underlying Kubernetes cluster
-- **Easy Provisioning** - Create via vcluster CLI, helm, kubectl, Argo or any of your favorite tools (it is basically just a StatefulSet)
+- **Reduced Overhead On Host Cluster** - Split up large multi-tenant clusters into smaller vclusters to reduce complexity and increase scalability. Since most vcluster api requests and objects will not reach the host cluster at all, vcluster can greatly decrease pressure on the underlying Kubernetes cluster
+- **Easy Provisioning** - Create via vcluster CLI, helm, kubectl, [cluster api](https://github.com/loft-sh/cluster-api-provider-vcluster), Argo CD or any of your favorite tools (it is basically just a StatefulSet)
 - **No Admin Privileges Required** - If you can deploy a web app to a Kubernetes namespace, you will be able to deploy a vcluster as well
 - **Single Namespace Encapsulation** - Every vcluster and all of its workloads are inside a single namespace of the underlying host cluster
 - **Easy Cleanup** - Delete the host namespace and the vcluster plus all of its workloads will be gone immediately
-- **Flexible & Versatile** - vcluster supports different storage backends (such as sqlite, mysql, postgresql & etcd), customizable sync behaviour, vcluster within vcluster setups, rewriting of kubelet metrics and has many more additional configuration options to fit a multitude of use cases
+- **Flexible & Versatile** - vcluster supports different storage backends (such as sqlite, mysql, postgresql & etcd), plugins, customizable sync behaviour, vcluster within vcluster setups and has many more additional configuration options to fit a multitude of different use cases
 
 <br>
 
-## Quick Start
+## Quick Start (~ 1 minute)
 To learn more about vcluster, [**open the full getting started guide**](https://www.vcluster.com/docs/getting-started/setup).
 
 ### 1. Download vcluster CLI
@@ -10360,24 +10413,21 @@ Alternatively, you can download the binary for your platform from the [GitHub Re
 
 ### 2. Create a vcluster
 ```vash
-# By default vcluster will connect via port-forwarding
-vcluster create vcluster-1 -n host-namespace-1 --connect
+vcluster create my-vcluster
 
 # OR: Use --expose to create a vcluster with an externally accessible LoadBalancer
-vcluster create vcluster-1 -n host-namespace-1 --connect --expose 
+vcluster create my-vcluster --expose 
 
 # OR: Use --isolate to create an isolated environment for the vcluster workloads
-vcluster create vcluster-1 -n host-namespace-1 --connect --isolate
+vcluster create my-vcluster --isolate
 ```
 
 Take a look at the [vcluster docs](https://www.vcluster.com/docs/getting-started/deployment) to see how to deploy a vcluster using Helm or Kubectl instead.
 
 ### 3. Use the vcluster
 
-Run in a separate terminal:
+Run in a terminal:
 ```bash
-export KUBECONFIG=./kubeconfig.yaml
-
 # Run any kubectl, helm, etc. command in your vcluster
 kubectl get namespace
 kubectl get pods -n kube-system
@@ -10388,10 +10438,13 @@ kubectl get pods -n demo-nginx
 
 ### 4. Cleanup
 ```bash
-vcluster delete vcluster-1 -n host-namespace-1
+vcluster delete my-vcluster
 ```
 
 Alternatively, you could also delete the host-namespace using kubectl.
+
+## Architecture
+[![vcluster Intro](docs/static/media/diagrams/vcluster-architecture.svg)](https://www.vcluster.com)
 
 ## Contributing
 
@@ -10405,17 +10458,24 @@ Thank you for your interest in contributing! Please refer to
 This project is open-source and licensed under Apache 2.0, so you can use it in any private or commercial projects.
 
 
-</details>[***GitHub - rosineygp/mkdkr: mkdkr = Makefile + Docker***](https://github.com/rosineygp/mkdkr)
+</details>
 
-![GitHub last commit](https://img.shields.io/github/last-commit/rosineygp/mkdkr) ![GitHub Repo stars](https://img.shields.io/github/stars/rosineygp/mkdkr?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/rosineygp/mkdkr)[***GitHub - mkdocs/mkdocs: Project documentation with Markdown.***](https://github.com/mkdocs/mkdocs)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/mkdocs/mkdocs) ![GitHub Repo stars](https://img.shields.io/github/stars/mkdocs/mkdocs?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/mkdocs/mkdocs)[***GitHub - helm/chart-releaser: Hosting Helm Charts via GitHub Pages and Releases***](https://github.com/helm/chart-releaser)
+[***GitHub - rosineygp/mkdkr: mkdkr = Makefile + Docker***](https://github.com/rosineygp/mkdkr)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/helm/chart-releaser) ![GitHub Repo stars](https://img.shields.io/github/stars/helm/chart-releaser?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/helm/chart-releaser)***QUICK INSTALL***
+![GitHub last commit](https://img.shields.io/github/last-commit/rosineygp/mkdkr) ![GitHub Repo stars](https://img.shields.io/github/stars/rosineygp/mkdkr?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/rosineygp/mkdkr)
+
+[***GitHub - mkdocs/mkdocs: Project documentation with Markdown.***](https://github.com/mkdocs/mkdocs)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/mkdocs/mkdocs) ![GitHub Repo stars](https://img.shields.io/github/stars/mkdocs/mkdocs?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/mkdocs/mkdocs)
+
+[***GitHub - helm/chart-releaser: Hosting Helm Charts via GitHub Pages and Releases***](https://github.com/helm/chart-releaser)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/helm/chart-releaser) ![GitHub Repo stars](https://img.shields.io/github/stars/helm/chart-releaser?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/helm/chart-releaser)
+***QUICK INSTALL***
 
 ```bash
 curl -L "https://github.com/helm/chart-releaser/releases/download/$(curl -L -s "https://api.github.com/repos/helm/chart-releaser/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1)/chart-releaser_$(curl -L -s "https://api.github.com/repos/helm/chart-releaser/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1 | cut -c2- )_linux_amd64.tar.gz" | sudo tar -C /usr/bin -xzv
-
 ```<details>
 
 <summary>README</summary> 
@@ -10623,7 +10683,10 @@ It appears like the [go-github Do call](https://github.com/google/go-github/blob
 The `cr index` command should also generate a warning when a release has no assets attached to it, to help people detect and troubleshoot this type of problem.
 
 
-</details>[***GitHub - vidispine/hull: The incredible HULL - Helm Uniform Layer Library - is a Helm library chart to improve Helm chart based workflows***](https://github.com/vidispine/hull)
+</details>
+
+
+[***GitHub - vidispine/hull: The incredible HULL - Helm Uniform Layer Library - is a Helm library chart to improve Helm chart based workflows***](https://github.com/vidispine/hull)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/vidispine/hull) ![GitHub Repo stars](https://img.shields.io/github/stars/vidispine/hull?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/vidispine/hull)<details>
 
@@ -11405,7 +11468,10 @@ metadata:
 Read the additional documentation in the [documentation folder](./doc) on how to utilize the features of the HULL library to the full effect.
 
 
-</details>[***GitHub - helm/chartmuseum: Host your own Helm Chart Repository***](https://github.com/helm/chartmuseum)
+</details>
+
+
+[***GitHub - helm/chartmuseum: Host your own Helm Chart Repository***](https://github.com/helm/chartmuseum)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/helm/chartmuseum) ![GitHub Repo stars](https://img.shields.io/github/stars/helm/chartmuseum?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/helm/chartmuseum)<details>
 
@@ -12112,17 +12178,30 @@ The following subprojects are maintained by *ChartMuseum*:
 You can reach the *ChartMuseum* community and developers in the [Kubernetes Slack](https://slack.k8s.io) **#chartmuseum** channel.
 
 
-</details>[***GitHub - Datalux/Osintgram: Osintgram is a OSINT tool on Instagram. It offers an interactive shell to perform analysis on Instagram account of any users by its nickname***](https://github.com/Datalux/Osintgram)
+</details>
 
-![GitHub last commit](https://img.shields.io/github/last-commit/Datalux/Osintgram) ![GitHub Repo stars](https://img.shields.io/github/stars/Datalux/Osintgram?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/Datalux/Osintgram)[***GitHub - bitnami/charts: Bitnami Helm Charts***](https://github.com/bitnami/charts)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/bitnami/charts) ![GitHub Repo stars](https://img.shields.io/github/stars/bitnami/charts?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/bitnami/charts)[***GitHub - kubernetes/autoscaler: Autoscaling components for Kubernetes***](https://github.com/kubernetes/autoscaler)
+[***GitHub - Datalux/Osintgram: Osintgram is a OSINT tool on Instagram. It offers an interactive shell to perform analysis on Instagram account of any users by its nickname***](https://github.com/Datalux/Osintgram)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/kubernetes/autoscaler) ![GitHub Repo stars](https://img.shields.io/github/stars/kubernetes/autoscaler?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/kubernetes/autoscaler)[***GitHub - argoproj/argocd-example-apps: Example Apps to Demonstrate Argo CD***](https://github.com/argoproj/argocd-example-apps)
+![GitHub last commit](https://img.shields.io/github/last-commit/Datalux/Osintgram) ![GitHub Repo stars](https://img.shields.io/github/stars/Datalux/Osintgram?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/Datalux/Osintgram)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/argoproj/argocd-example-apps) ![GitHub Repo stars](https://img.shields.io/github/stars/argoproj/argocd-example-apps?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/argoproj/argocd-example-apps)[***GitHub - kubernetes-sigs/kubespray: Deploy a Production Ready Kubernetes Cluster***](https://github.com/kubernetes-sigs/kubespray)
+[***GitHub - bitnami/charts: Bitnami Helm Charts***](https://github.com/bitnami/charts)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/kubernetes-sigs/kubespray) ![GitHub Repo stars](https://img.shields.io/github/stars/kubernetes-sigs/kubespray?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/kubernetes-sigs/kubespray)[***GitHub - k8s-at-home/flux-cluster-template: Highly opinionated template for deploying a single Kubernetes (k3s) cluster with Ansible and Terraform backed by Flux, SOPS, GitHub Actions, Renovate and more!***](https://github.com/k8s-at-home/template-cluster-k3s)
+![GitHub last commit](https://img.shields.io/github/last-commit/bitnami/charts) ![GitHub Repo stars](https://img.shields.io/github/stars/bitnami/charts?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/bitnami/charts)
+
+[***GitHub - kubernetes/autoscaler: Autoscaling components for Kubernetes***](https://github.com/kubernetes/autoscaler)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/kubernetes/autoscaler) ![GitHub Repo stars](https://img.shields.io/github/stars/kubernetes/autoscaler?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/kubernetes/autoscaler)
+
+[***GitHub - argoproj/argocd-example-apps: Example Apps to Demonstrate Argo CD***](https://github.com/argoproj/argocd-example-apps)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/argoproj/argocd-example-apps) ![GitHub Repo stars](https://img.shields.io/github/stars/argoproj/argocd-example-apps?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/argoproj/argocd-example-apps)
+
+[***GitHub - kubernetes-sigs/kubespray: Deploy a Production Ready Kubernetes Cluster***](https://github.com/kubernetes-sigs/kubespray)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/kubernetes-sigs/kubespray) ![GitHub Repo stars](https://img.shields.io/github/stars/kubernetes-sigs/kubespray?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/kubernetes-sigs/kubespray)
+
+[***GitHub - k8s-at-home/flux-cluster-template: Highly opinionated template for deploying a single Kubernetes (k3s) cluster with Ansible and Terraform backed by Flux, SOPS, GitHub Actions, Renovate and more!***](https://github.com/k8s-at-home/template-cluster-k3s)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/k8s-at-home/template-cluster-k3s) ![GitHub Repo stars](https://img.shields.io/github/stars/k8s-at-home/template-cluster-k3s?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/k8s-at-home/template-cluster-k3s)<details>
 
@@ -12494,6 +12573,12 @@ task cluster:resources
     task cluster:certificates
     ```
 
+7. View all the ingresses
+
+    ```sh
+    task cluster:ingresses
+    ```
+
 🏆 **Congratulations** if all goes smooth you'll have a Kubernetes cluster managed by Flux, your Git repository is driving the state of your cluster.
 
 ☢️ If you run into problems, you can run `task ansible:nuke` to destroy the k3s cluster and start over.
@@ -12589,7 +12674,7 @@ The benefits of a public repository include:
       ssh-keygen -t ecdsa -b 521 -C "github-deploy-key" -f ./cluster/github-deploy-key -q -P ""
       ```
   2. Paste public key in the deploy keys section of your repository settings
-  3. Create sops secret in `cluster/base/flux-system/github-deploy-key.sops.yaml` with the contents of:
+  3. Create sops secret in `cluster/flux/flux-system/github-deploy-key.sops.yaml` with the contents of:
       ```yaml
       # yamllint disable
       apiVersion: v1
@@ -12611,19 +12696,19 @@ The benefits of a public repository include:
       ```
   4. Encrypt secret:
       ```sh
-      sops --encrypt --in-place ./cluster/base/flux-system/github-deploy-key.sops.yaml
+      sops --encrypt --in-place ./cluster/flux/flux-system/github-deploy-key.sops.yaml
       ```
   5. Apply secret to cluster:
       ```sh
-      sops --decrypt cluster/base/flux-system/github-deploy-key.sops.yaml | kubectl apply -f -
+      sops --decrypt cluster/flux/flux-system/github-deploy-key.sops.yaml | kubectl apply -f -
       ```
-  6.  Update `cluster/base/flux-system/gotk-sync.yaml`:
+  6.  Update `cluster/flux/flux-system/flux-cluster.yaml`:
       ```yaml
       ---
       apiVersion: source.toolkit.fluxcd.io/v1beta2
       kind: GitRepository
       metadata:
-        name: flux-installation
+        name: flux-cluster
         namespace: flux-system
       spec:
         interval: 10m
@@ -12667,9 +12752,14 @@ Community member @Whazor created [this website](https://whazor.github.io/k8s-at-
 Many people have shared their awesome repositories over at [awesome-home-kubernetes](https://github.com/k8s-at-home/awesome-home-kubernetes).
 
 
-</details>[***GitHub - stakater/Reloader: A Kubernetes controller to watch changes in ConfigMap and Secrets and do rolling upgrades on Pods with their associated Deployment, StatefulSet, DaemonSet and DeploymentConfig – [✩Star] if you&#39;re using it!***](https://github.com/stakater/Reloader)
+</details>
 
-![GitHub last commit](https://img.shields.io/github/last-commit/stakater/Reloader) ![GitHub Repo stars](https://img.shields.io/github/stars/stakater/Reloader?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/stakater/Reloader)[***GitHub - emberstack/kubernetes-reflector: Custom Kubernetes controller that can be used to replicate secrets, configmaps and certificates.***](https://github.com/emberstack/kubernetes-reflector)
+
+[***GitHub - stakater/Reloader: A Kubernetes controller to watch changes in ConfigMap and Secrets and do rolling upgrades on Pods with their associated Deployment, StatefulSet, DaemonSet and DeploymentConfig – [✩Star] if you&#39;re using it!***](https://github.com/stakater/Reloader)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/stakater/Reloader) ![GitHub Repo stars](https://img.shields.io/github/stars/stakater/Reloader?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/stakater/Reloader)
+
+[***GitHub - emberstack/kubernetes-reflector: Custom Kubernetes controller that can be used to replicate secrets, configmaps and certificates.***](https://github.com/emberstack/kubernetes-reflector)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/emberstack/kubernetes-reflector) ![GitHub Repo stars](https://img.shields.io/github/stars/emberstack/kubernetes-reflector?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/emberstack/kubernetes-reflector)<details>
 
@@ -12842,32 +12932,55 @@ spec:
   ...
   ```
 
-</details>[***GitHub - go-task/task: A task runner / simpler Make alternative written in Go***](https://github.com/go-task/task)
+</details>
 
-![GitHub last commit](https://img.shields.io/github/last-commit/go-task/task) ![GitHub Repo stars](https://img.shields.io/github/stars/go-task/task?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/go-task/task)***QUICK INSTALL***
+
+[***GitHub - go-task/task: A task runner / simpler Make alternative written in Go***](https://github.com/go-task/task)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/go-task/task) ![GitHub Repo stars](https://img.shields.io/github/stars/go-task/task?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/go-task/task)
+***QUICK INSTALL***
 
 ```bash
 sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
+```
 
-```[***GitHub - megadose/holehe: holehe allows you to check if the mail is used on different sites like twitter, instagram and will retrieve information on sites with the forgotten password function.***](https://github.com/megadose/holehe)
+[***GitHub - megadose/holehe: holehe allows you to check if the mail is used on different sites like twitter, instagram and will retrieve information on sites with the forgotten password function.***](https://github.com/megadose/holehe)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/megadose/holehe) ![GitHub Repo stars](https://img.shields.io/github/stars/megadose/holehe?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/megadose/holehe)[***GitHub - webtorrent/webtorrent-cli: WebTorrent, the streaming torrent client. For the command line.***](https://github.com/webtorrent/webtorrent-cli)
+![GitHub last commit](https://img.shields.io/github/last-commit/megadose/holehe) ![GitHub Repo stars](https://img.shields.io/github/stars/megadose/holehe?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/megadose/holehe)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/webtorrent/webtorrent-cli) ![GitHub Repo stars](https://img.shields.io/github/stars/webtorrent/webtorrent-cli?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/webtorrent/webtorrent-cli)[***GitHub - zakjan/cert-chain-resolver: SSL certificate chain resolver***](https://github.com/zakjan/cert-chain-resolver)
+[***GitHub - webtorrent/webtorrent-cli: WebTorrent, the streaming torrent client. For the command line.***](https://github.com/webtorrent/webtorrent-cli)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/zakjan/cert-chain-resolver) ![GitHub Repo stars](https://img.shields.io/github/stars/zakjan/cert-chain-resolver?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/zakjan/cert-chain-resolver)[***GitHub - cert-manager/cert-manager: Automatically provision and manage TLS certificates in Kubernetes***](https://github.com/cert-manager/cert-manager)
+![GitHub last commit](https://img.shields.io/github/last-commit/webtorrent/webtorrent-cli) ![GitHub Repo stars](https://img.shields.io/github/stars/webtorrent/webtorrent-cli?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/webtorrent/webtorrent-cli)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/cert-manager/cert-manager) ![GitHub Repo stars](https://img.shields.io/github/stars/cert-manager/cert-manager?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/cert-manager/cert-manager)[***GitHub - gravitational/teleport: Certificate authority and access plane for SSH, Kubernetes, web apps, databases and desktops***](https://github.com/gravitational/teleport)
+[***GitHub - zakjan/cert-chain-resolver: SSL certificate chain resolver***](https://github.com/zakjan/cert-chain-resolver)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/gravitational/teleport) ![GitHub Repo stars](https://img.shields.io/github/stars/gravitational/teleport?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/gravitational/teleport)[***GitHub - localtunnel/localtunnel: expose yourself***](https://github.com/localtunnel/localtunnel)
+![GitHub last commit](https://img.shields.io/github/last-commit/zakjan/cert-chain-resolver) ![GitHub Repo stars](https://img.shields.io/github/stars/zakjan/cert-chain-resolver?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/zakjan/cert-chain-resolver)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/localtunnel/localtunnel) ![GitHub Repo stars](https://img.shields.io/github/stars/localtunnel/localtunnel?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/localtunnel/localtunnel)[***GitHub - argoproj-labs/argocd-image-updater: Automatic container image update for Argo CD***](https://github.com/argoproj-labs/argocd-image-updater)
+[***GitHub - cert-manager/cert-manager: Automatically provision and manage TLS certificates in Kubernetes***](https://github.com/cert-manager/cert-manager)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/argoproj-labs/argocd-image-updater) ![GitHub Repo stars](https://img.shields.io/github/stars/argoproj-labs/argocd-image-updater?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/argoproj-labs/argocd-image-updater)[***GitHub - rancher/system-upgrade-controller: In your Kubernetes, upgrading your nodes***](https://github.com/rancher/system-upgrade-controller)
+![GitHub last commit](https://img.shields.io/github/last-commit/cert-manager/cert-manager) ![GitHub Repo stars](https://img.shields.io/github/stars/cert-manager/cert-manager?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/cert-manager/cert-manager)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/rancher/system-upgrade-controller) ![GitHub Repo stars](https://img.shields.io/github/stars/rancher/system-upgrade-controller?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/rancher/system-upgrade-controller)[***GitHub - archlinux/archinstall: Arch Linux installer - guided, templates etc.***](https://github.com/archlinux/archinstall)
+[***GitHub - gravitational/teleport: Certificate authority and access plane for SSH, Kubernetes, web apps, databases and desktops***](https://github.com/gravitational/teleport)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/archlinux/archinstall) ![GitHub Repo stars](https://img.shields.io/github/stars/archlinux/archinstall?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/archlinux/archinstall)[***GitHub - sensepost/Frack: Frack - Keep and Maintain your breach data***](https://github.com/sensepost/Frack)
+![GitHub last commit](https://img.shields.io/github/last-commit/gravitational/teleport) ![GitHub Repo stars](https://img.shields.io/github/stars/gravitational/teleport?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/gravitational/teleport)
+
+[***GitHub - localtunnel/localtunnel: expose yourself***](https://github.com/localtunnel/localtunnel)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/localtunnel/localtunnel) ![GitHub Repo stars](https://img.shields.io/github/stars/localtunnel/localtunnel?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/localtunnel/localtunnel)
+
+[***GitHub - argoproj-labs/argocd-image-updater: Automatic container image update for Argo CD***](https://github.com/argoproj-labs/argocd-image-updater)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/argoproj-labs/argocd-image-updater) ![GitHub Repo stars](https://img.shields.io/github/stars/argoproj-labs/argocd-image-updater?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/argoproj-labs/argocd-image-updater)
+
+[***GitHub - rancher/system-upgrade-controller: In your Kubernetes, upgrading your nodes***](https://github.com/rancher/system-upgrade-controller)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/rancher/system-upgrade-controller) ![GitHub Repo stars](https://img.shields.io/github/stars/rancher/system-upgrade-controller?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/rancher/system-upgrade-controller)
+
+[***GitHub - archlinux/archinstall: Arch Linux installer - guided, templates etc.***](https://github.com/archlinux/archinstall)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/archlinux/archinstall) ![GitHub Repo stars](https://img.shields.io/github/stars/archlinux/archinstall?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/archlinux/archinstall)
+
+[***GitHub - sensepost/Frack: Frack - Keep and Maintain your breach data***](https://github.com/sensepost/Frack)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/sensepost/Frack) ![GitHub Repo stars](https://img.shields.io/github/stars/sensepost/Frack?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/sensepost/Frack)<details>
 
@@ -12987,30 +13100,45 @@ The query module allows you to query the dataset for domains. The output will be
 ## License
 `Frack` is licensed under a [GNU General Public v3 License](https://www.gnu.org/licenses/gpl-3.0.en.html). Permissions beyond the scope of this license may be available at [http://sensepost.com/contact/](http://sensepost.com/contact/).
 
-</details>[***GitHub - cloudposse/charts: The &quot;Cloud Posse&quot; Distribution of Kubernetes Applications***](https://github.com/cloudposse/charts)
+</details>
 
-![GitHub last commit](https://img.shields.io/github/last-commit/cloudposse/charts) ![GitHub Repo stars](https://img.shields.io/github/stars/cloudposse/charts?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/cloudposse/charts)[***GitHub - chr4/shellrc: Shell dotfiles, conf.d stype, for multiple shells (bash, zsh)***](https://github.com/chr4/shellrc)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/chr4/shellrc) ![GitHub Repo stars](https://img.shields.io/github/stars/chr4/shellrc?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/chr4/shellrc)[***GitHub - emirozer/kubectl-doctor: kubectl cluster triage plugin for k8s - 🏥 (brew doctor equivalent)***](https://github.com/emirozer/kubectl-doctor)
+[***GitHub - cloudposse/charts: The &quot;Cloud Posse&quot; Distribution of Kubernetes Applications***](https://github.com/cloudposse/charts)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/emirozer/kubectl-doctor) ![GitHub Repo stars](https://img.shields.io/github/stars/emirozer/kubectl-doctor?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/emirozer/kubectl-doctor)[***GitHub - willhallonline/docker-ansible: Ansible inside Docker containers: Alpine, Ubuntu, Centos &amp; Debian with Ansible 2.12, 2.11, 2.10 and 2.9 + Mitogen***](https://github.com/willhallonline/docker-ansible)
+![GitHub last commit](https://img.shields.io/github/last-commit/cloudposse/charts) ![GitHub Repo stars](https://img.shields.io/github/stars/cloudposse/charts?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/cloudposse/charts)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/willhallonline/docker-ansible) ![GitHub Repo stars](https://img.shields.io/github/stars/willhallonline/docker-ansible?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/willhallonline/docker-ansible)[***GitHub - zricethezav/gitleaks: Protect and discover secrets using Gitleaks 🔑***](https://github.com/zricethezav/gitleaks)
+[***GitHub - chr4/shellrc: Shell dotfiles, conf.d stype, for multiple shells (bash, zsh)***](https://github.com/chr4/shellrc)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/zricethezav/gitleaks) ![GitHub Repo stars](https://img.shields.io/github/stars/zricethezav/gitleaks?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/zricethezav/gitleaks)***QUICK INSTALL***
+![GitHub last commit](https://img.shields.io/github/last-commit/chr4/shellrc) ![GitHub Repo stars](https://img.shields.io/github/stars/chr4/shellrc?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/chr4/shellrc)
+
+[***GitHub - emirozer/kubectl-doctor: kubectl cluster triage plugin for k8s - 🏥 (brew doctor equivalent)***](https://github.com/emirozer/kubectl-doctor)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/emirozer/kubectl-doctor) ![GitHub Repo stars](https://img.shields.io/github/stars/emirozer/kubectl-doctor?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/emirozer/kubectl-doctor)
+
+[***GitHub - willhallonline/docker-ansible: Ansible inside Docker containers: Alpine, Ubuntu, Centos &amp; Debian with Ansible 2.12, 2.11, 2.10 and 2.9 + Mitogen***](https://github.com/willhallonline/docker-ansible)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/willhallonline/docker-ansible) ![GitHub Repo stars](https://img.shields.io/github/stars/willhallonline/docker-ansible?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/willhallonline/docker-ansible)
+
+[***GitHub - zricethezav/gitleaks: Protect and discover secrets using Gitleaks 🔑***](https://github.com/zricethezav/gitleaks)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/zricethezav/gitleaks) ![GitHub Repo stars](https://img.shields.io/github/stars/zricethezav/gitleaks?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/zricethezav/gitleaks)
+***QUICK INSTALL***
 
 ```bash
 curl -L "https://github.com/zricethezav/gitleaks/releases/download/$(curl -L -s "https://api.github.com/repos/zricethezav/gitleaks/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1)/gitleaks_$(curl -L -s "https://api.github.com/repos/zricethezav/gitleaks/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1 | cut -c2- )_linux_x64.tar.gz" | sudo tar -C /usr/bin -xzv
+```
 
-```[***GitHub - Jaydee94/kubeseal-webgui: This is a python based webapp for using Bitnami-Sealed-Secrets in a web-ui.***](https://github.com/Jaydee94/kubeseal-webgui)
+[***GitHub - Jaydee94/kubeseal-webgui: This is a python based webapp for using Bitnami-Sealed-Secrets in a web-ui.***](https://github.com/Jaydee94/kubeseal-webgui)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/Jaydee94/kubeseal-webgui) ![GitHub Repo stars](https://img.shields.io/github/stars/Jaydee94/kubeseal-webgui?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/Jaydee94/kubeseal-webgui)[***GitHub - bitnami-labs/sealed-secrets: A Kubernetes controller and tool for one-way encrypted Secrets***](https://github.com/bitnami-labs/sealed-secrets)
+![GitHub last commit](https://img.shields.io/github/last-commit/Jaydee94/kubeseal-webgui) ![GitHub Repo stars](https://img.shields.io/github/stars/Jaydee94/kubeseal-webgui?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/Jaydee94/kubeseal-webgui)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/bitnami-labs/sealed-secrets) ![GitHub Repo stars](https://img.shields.io/github/stars/bitnami-labs/sealed-secrets?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/bitnami-labs/sealed-secrets)***QUICK INSTALL***
+[***GitHub - bitnami-labs/sealed-secrets: A Kubernetes controller and tool for one-way encrypted Secrets***](https://github.com/bitnami-labs/sealed-secrets)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/bitnami-labs/sealed-secrets) ![GitHub Repo stars](https://img.shields.io/github/stars/bitnami-labs/sealed-secrets?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/bitnami-labs/sealed-secrets)
+***QUICK INSTALL***
 
 ```bash
 curl -L "https://github.com/bitnami-labs/sealed-secrets/releases/download/$(curl -L -s "https://api.github.com/repos/bitnami-labs/sealed-secrets/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1)/kubeseal-$(curl -L -s "https://api.github.com/repos/bitnami-labs/sealed-secrets/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1 | cut -c2- )-linux-amd64.tar.gz" | sudo tar -C /usr/bin -xzv
-
 ```<details>
 
 <summary>README</summary> 
@@ -13685,13 +13813,16 @@ Click [here](http://slack.k8s.io) to sign up to the Kubernetes Slack org.
 - [DEPRACATED] Sealed Secrets Operator: https://github.com/disposab1e/sealed-secrets-operator-helm
 
 
-</details>[***GitHub - argoproj-labs/argocd-autopilot: Argo-CD Autopilot***](https://github.com/argoproj-labs/argocd-autopilot)
+</details>
 
-![GitHub last commit](https://img.shields.io/github/last-commit/argoproj-labs/argocd-autopilot) ![GitHub Repo stars](https://img.shields.io/github/stars/argoproj-labs/argocd-autopilot?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/argoproj-labs/argocd-autopilot)***QUICK INSTALL***
+
+[***GitHub - argoproj-labs/argocd-autopilot: Argo-CD Autopilot***](https://github.com/argoproj-labs/argocd-autopilot)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/argoproj-labs/argocd-autopilot) ![GitHub Repo stars](https://img.shields.io/github/stars/argoproj-labs/argocd-autopilot?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/argoproj-labs/argocd-autopilot)
+***QUICK INSTALL***
 
 ```bash
-(curl -L --silent https://github.com/argoproj-labs/argocd-autopilot/releases/download/$(curl -L -s "https://api.github.com/repos/argoproj-labs/argocd-autopilot/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1)/argocd-autopilot-linux-amd64.tar.gz | tar zx) && mv ./argocd-autopilot-* ./argocd-autopilot
-
+curl -L --silent https://github.com/argoproj-labs/argocd-autopilot/releases/download/$(curl -L -s "https://api.github.com/repos/argoproj-labs/argocd-autopilot/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1)/argocd-autopilot-linux-amd64.tar.gz | tar zx && mv ./argocd-autopilot-* ./argocd-autopilot
 ```<details>
 
 <summary>README</summary> 
@@ -13864,6 +13995,9 @@ Join us in channel #argo-autopilot in CNCF slack workspace.
 Click here to join: https://slack.cncf.io/
 
 
-</details>[***GitHub - redhat-cop/patch-operator: An operator to apply patches to Kubernetes objects in a declarative way.***](https://github.com/redhat-cop/patch-operator)
+</details>
+
+
+[***GitHub - redhat-cop/patch-operator: An operator to apply patches to Kubernetes objects in a declarative way.***](https://github.com/redhat-cop/patch-operator)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/redhat-cop/patch-operator) ![GitHub Repo stars](https://img.shields.io/github/stars/redhat-cop/patch-operator?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/redhat-cop/patch-operator)
