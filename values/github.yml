@@ -8,6 +8,9 @@ github_repositories:
   - name: kubernetes/git-sync
     install: ""
     
+  - name: argoproj/gitops-engine
+    install: ""
+    
   - name: mogensen/kubernetes-split-yaml
     install: ""
     
