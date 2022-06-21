@@ -2,6 +2,9 @@ github_repositories:
   - name: helm/helm
     install: ""
     
+  - name: AGWA/git-crypt
+    install: ""
+    
   - name: vmware/govmomi
     install: ""
     
