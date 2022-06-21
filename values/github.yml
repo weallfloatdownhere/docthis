@@ -5,6 +5,9 @@ github_repositories:
   - name: rht-labs/ubiquitous-journey
     install: ""
     
+  - name: slok/agebox
+    install: ""
+    
   - name: onedr0p/home-ops
     install: ""
     
