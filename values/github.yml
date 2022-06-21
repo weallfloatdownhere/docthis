@@ -2,6 +2,9 @@ github_repositories:
   - name: helm/helm
     install: ""
     
+  - name: vmware/govmomi
+    install: ""
+    
   - name: redhat-cop/gitops-catalog
     install: ""
     
