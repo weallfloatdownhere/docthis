@@ -2,6 +2,9 @@ github_repositories:
   - name: helm/helm
     install: ""
     
+  - name: kubernetes/git-sync
+    install: ""
+    
   - name: mogensen/kubernetes-split-yaml
     install: ""
     
