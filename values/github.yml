@@ -17,6 +17,9 @@ github_repositories:
   - name: kubernetes/git-sync
     install: ""
     
+  - name: bjw-s/home-ops
+    install: ""
+    
   - name: argoproj/gitops-engine
     install: ""
     
