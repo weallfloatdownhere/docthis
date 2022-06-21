@@ -199,10 +199,14 @@ helms_charts:
   - bitnami/argo-cd
   - arthurk/argocd-example-install
 
-tools:
-  markdown:
-    - name: "Pandoc"
-      url: https://pandoc.org
-  windows:
-  - name: screetogif
-    website: https://www.screentogif.com
+index:
+  documentations:
+    generators:
+      - name: mkdocs
+        url: https://www.mkdocs.org/
+    markdown:
+      - name: "Pandoc"
+        url: https://pandoc.org
+    windows:
+      - name: screetogif
+        website: https://www.screentogif.com
