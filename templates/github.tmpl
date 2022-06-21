@@ -12,6 +12,8 @@ cd $(mktemp -d) && git clone https://github.com/weallfloatdownhere/docthis.git .
 
 {% for repo in github_repositories|default([]) %}
 
+# *{{ repo.url | dirname | trim -}}*
+
 [***{{ repo.description -}}***]({{ repo.url }})
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/{{ repo.repo }}) ![GitHub Repo stars](https://img.shields.io/github/stars/{{ repo.repo }}?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/{{ repo.repo }})
@@ -24,8 +26,6 @@ cd $(mktemp -d) && git clone https://github.com/weallfloatdownhere/docthis.git .
 ```
 {% endif %}
 
-</br>
-
 {% if repo.readme != 'undefined' and repo.readme != '' and "404" not in repo.readme|default('404') and repo.readme|default('')|length > 20 %}
 <details>
 
@@ -37,6 +37,10 @@ cd $(mktemp -d) && git clone https://github.com/weallfloatdownhere/docthis.git .
 
 {% endif %}
 
-</br>
+{% raw %}
 
+---
+
+</br>
+{% endraw %}
 {% endfor %}
