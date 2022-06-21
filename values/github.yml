@@ -8,6 +8,9 @@ github_repositories:
   - name: slok/agebox
     install: ""
     
+  - name: Azure/AzOps
+    install: ""
+    
   - name: onedr0p/home-ops
     install: ""
     
