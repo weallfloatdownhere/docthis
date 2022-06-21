@@ -1,8 +1,12 @@
+
+
 ## Refresh markdown files content.
 
 ```bash
 cd $(mktemp -d) && git clone https://github.com/weallfloatdownhere/docthis.git .&& python3 docthis.py generate . && git add . && git commit -m "Regen README" && git push
 ```
+
+
 
 ---
 
@@ -10,7 +14,14 @@ cd $(mktemp -d) && git clone https://github.com/weallfloatdownhere/docthis.git .
 
 [***GitHub - helm/helm: The Kubernetes Package Manager***](https://github.com/helm/helm)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/helm/helm) ![GitHub Repo stars](https://img.shields.io/github/stars/helm/helm?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/helm/helm)<details>
+![GitHub last commit](https://img.shields.io/github/last-commit/helm/helm) ![GitHub Repo stars](https://img.shields.io/github/stars/helm/helm?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/helm/helm)
+
+
+
+</br>
+
+
+<details>
 
 <summary>README</summary> 
 
@@ -92,35 +103,782 @@ Participation in the Helm community is governed by the [Code of Conduct](code-of
 </details>
 
 
+
+</br>
+
+
+
+[***GitHub - redhat-cop/gitops-catalog: Tools and technologies that are hosted on an OpenShift cluster***](https://github.com/redhat-cop/gitops-catalog)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/redhat-cop/gitops-catalog) ![GitHub Repo stars](https://img.shields.io/github/stars/redhat-cop/gitops-catalog?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/redhat-cop/gitops-catalog)
+
+
+
+</br>
+
+
+<details>
+
+<summary>README</summary> 
+
+# GitOps Catalog
+
+[![Build Status](https://github.com/redhat-cop/gitops-catalog/workflows/Lint/badge.svg?branch=main)](https://github.com/redhat-cop/gitops-catalog/actions?workflow=Lint)
+
+The GitOps Catalog includes kustomize bases and overlays for a number of OpenShift operators and applications.
+
+This catalog is not officially supported by Red Hat and customers are discouraged from referencing this repo directly as a remote repo in kustomize as future changes may break these references. Instead customers are encouraged to take individual items of interest into their own curated catalog and maintain it as their own.
+
+## Catalog Refactoring for Consistency
+
+Now that this catalog is part of the Red Hat Community of Practice, there will be some structural refactoring to improve consistency.  If you have been using this catalog since before it was part of the `redhat-cop` organization, or at least before any refactoring has begun, be sure to include a `ref` in your `oc/kubectl` commands or `kustomization.yaml` files to avoid any negative side effects.  The last tag before the repository was migrated is `v0.3`.  Simply include `?ref=v0.3` at the end of the repository reference.  For example:
+
+```
+oc apply -k https://github.com/redhat-cop/gitops-catalog/jenkins2/overlays/default?ref=v0.3
+```
+
+Or
+
+```
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- github.com/redhat-cop/gitops-catalog/jenkins2/bases/?ref=v0.3
+```
+
+
+## Usage
+
+Each catalog item has (or will have) its own README in its directory root with instructions.  Generally speaking, you can usually just apply a "base" or "overlay" directly in your cluster by cloning this repostitory and using the `-k` flag (for Kustomize) built into `oc` and `kubectl`:
+
+```
+git clone https://github.com/redhat-cop/gitops-catalog
+oc apply -k catalog/jenkins2/overlays/default
+```
+
+Or to skip the cloning step:
+
+```
+oc apply -k https://github.com/redhat-cop/gitops-catalog/jenkins2/overlays/default
+```
+
+## Kustomize
+
+You can reference bases for the various tools here in your own kustomize overlay without explicitly cloning this repo, for example:
+
+```
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: product-catalog-cicd
+
+resources:
+- github.com/redhat-cop/gitops-catalog/jenkins2/bases/?ref=main
+```
+
+This enables you to patch these resources for your specific environments. Note that none of these bases specify a namespace, in your kustomization
+overlay you can include the specific namespace you want to install the tool into.
+
+
+</details>
+
+
+
+</br>
+
+
+
+[***GitHub - rht-labs/ubiquitous-journey: 🧰 Open Innovation Labs Developer Experience - all the tooling for starting a residency***](https://github.com/rht-labs/ubiquitous-journey)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/rht-labs/ubiquitous-journey) ![GitHub Repo stars](https://img.shields.io/github/stars/rht-labs/ubiquitous-journey?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/rht-labs/ubiquitous-journey)
+
+
+
+</br>
+
+
+<details>
+
+<summary>README</summary> 
+
+# 🦄 Ubiquitous Journey 🔥
+
+🧰 This repo embodies a GitOps approach to deploying application code, middleware infrastructure and supporting CI/CD tools. 🧰
+
+At its simplest, the repo is an [ArgoCD Application](https://argo-cd.readthedocs.io/en/stable/core_concepts/) which references [other helm charts](https://github.com/redhat-cop/helm-charts.git) and [other kustomize definitions](https://github.com/rht-labs/refactored-adventure) to deploy applications.
+
+The idea is to reference other Charts, Kustomize, YAML snippets from within this framework. This keeps things `pluggable` to suit the needs of your team.
+
+🎨 We have evolved the design from the original [Labs CI / CD](https://github.com/rht-labs/labs-ci-cd.git) project. The  Ubiquitous Journey (`UJ`) represents a major milestone in moving to a GitOps approach to tooling, application management and configuration drift using [ArgoCD](https://argoproj.github.io/argo-cd/).
+
+## Table of Contents
+
+- [Contributor Covenant Code of Conduct](./code-of-conduct.html#contributor-covenant-code-of-conduct)
+  * [Our Pledge](./code-of-conduct.html#our-pledge)
+  * [Our Standards](./code-of-conduct.html#our-standards)
+  * [Our Responsibilities](./code-of-conduct.html#our-responsibilities)
+  * [Scope](./code-of-conduct.html#scope)
+  * [Enforcement](./code-of-conduct.html#enforcement)
+  * [Attribution](./code-of-conduct.html#attribution)
+- [🦄 Ubiquitous Journey 🔥](./index.html#%F0%9F%A6%84-ubiquitous-journey-)
+  * [Components](./index.html#components)
+  * [How do I run it? 🏃‍♀️](./index.html#how-do-i-run-it-)
+    + [Prerequisites](./index.html#prerequisites)
+    + [Let's go, installing ArgoCD 🏃🏻](./index.html#lets-go-installing-argocd-)
+    + [🤠 Deploying the Ubiquitous Journey](./index.html#%F0%9F%A4%A0-deploying-the-ubiquitous-journey)
+    + [Cleanup 🧤](./index.html#cleanup-)
+    + [Debugging 🤺](./index.html#debugging-)
+- [Common Errors when installing ArgoCD](./docs%2Fargocd-install.html#common-errors-when-installing-argocd)
+- [ArgoCD Master and Child 👩‍👦](./docs%2Fargocd-master-child.html#argocd-master-and-child-)
+- [Restricted Children](./docs%2Fargocd-master-child.html#restricted-children)
+- [Bootstrap projects and ArgoCD 🍻](./docs%2Fbootstrap-argocd.html#bootstrap-projects-and-argocd-)
+  * [Tooling for Application Development 🦅](./docs%2Fbootstrap-argocd.html#tooling-for-application-development-)
+      - [(A) Deploy using argo app of apps ...](./docs%2Fbootstrap-argocd.html#a-deploy-using-argo-app-of-apps-)
+      - [(B) Deploy using helm ...](./docs%2Fbootstrap-argocd.html#b-deploy-using-helm-)
+- [Example Application Deploy 🌮](./docs%2Fbootstrap-argocd.html#example-application-deploy-)
+- [Cleaning up ArgoCD Apps 🧹](./docs%2Fbootstrap-argocd.html#cleaning-up-argocd-apps-)
+- [Metrics 📉](./docs%2Fbootstrap-argocd.html#metrics-)
+- [Deploy to a custom namespace 🦴](./docs%2Fdeploy-custom-namespace.html#deploy-to-a-custom-namespace-)
+- [Help me](./docs%2Fhelp.html#help-me)
+  * [Not automated yet ...](./docs%2Fhelp.html#not-automated-yet-)
+- [Sealed Secrets Help](./docs%2Fsealed-secrets.html#sealed-secrets-help)
+  * [🕵️‍♀️ Generate Sealed Secrets:](./docs%2Fsealed-secrets.html#%F0%9F%95%B5%EF%B8%8F%E2%80%8D%E2%99%80%EF%B8%8F-generate-sealed-secrets)
+  * [📝 Bring your own certs](./docs%2Fsealed-secrets.html#%F0%9F%93%9D-bring-your-own-certs)
+- [What's in the box? 👨](./docs%2Fwhats-in-the-box.html#whats-in-the-box-)
+- [What it's not...🤷🏻‍♀️](./docs%2Fwhats-in-the-box.html#what-its-not)
+- [Dashboard 📃](./docs%2Fwhats-in-the-box.html#dashboard-)
+
+## Components
+
+The folder structure of this repo is split as follows:
+
+```bash
+├── archive                            <===  💀 where the skeletons live. archived material.
+├── docs                               <===  📖 supporting documentation for UJ.
+├── pet-battle                         <===  📖 the example application `pet-battle`
+├── templates                          <===  📖 helm templates to create ArgoCD Applications and Projects for UJ
+├── ubiquitous-journey                 <===  📖 helm values files containing applications we wish to deploy
+├── Chart.yaml                         <===  📖 we deploy UJ using a helm chart
+└── values.yaml                        <===  📖 UJ's helm chart values
+```
+
+There are two main components to this repository:
+
+1. `Ubiquitous Journey` - Contains all the tools, collaboration software and day2ops to be deployed on Red Hat OpenShift. This includes chat applications, task management apps and tools to support CI/CD workflows and testing. For the complete list and details: [What's in the box?👨](docs/whats-in-the-box.md)
+2. An demo application called [`pet-battle`](https://github.com/petbattle) that shows you how to use the UJ structure with a three tiered application stack.
+
+Each part can be used independently of each other but sequentially they create a full stack.
+
+## How do I run it? 🏃‍♀️
+
+If you already have an ArgoCD instance running and you want just want to add the tooling to it, [move to part 2](docs/bootstrap-argocd.md#tooling-for-application-development-🦅) in the docs.
+
+### Prerequisites
+
+You will need:
+
+- OpenShift 4.6+ or greater (cluster admin user required) - [Try OpenShift](https://try.openshift.com)
+- Install helm v3+ (cli) or greater - [Helm Quickstart](https://helm.sh/docs/intro/quickstart)
+
+### Let's go, installing ArgoCD 🏃🏻
+
+Install an instance of ArgoCD. There are several methods to install ArgoCD in OpenShift. Pick your favorite flavour 🍦
+
+Use the Red Hat supported GitOps Operator (configured by default as cluster wide and to deploy the operator and an instance in `labs-ci-cd`)
+
+```bash
+helm repo add redhat-cop https://redhat-cop.github.io/helm-charts
+helm upgrade --install argocd \
+  --create-namespace \
+  --namespace labs-ci-cd \
+  redhat-cop/gitops-operator
+```
+
+⛷️ We **strongly** recommend that you make a copy of the `values.yaml` file and make edits that way. This values file can be checked in to this repo and be kept if further changes are needed such as adding in private `repositoryCredentials` or other handy stuff such as `secrets` and `namespaces` etc. For example, you have `argocd-values.yaml` file with your changes:
+
+```bash
+helm upgrade --install argocd \
+  --create-namespace \
+  --namespace labs-ci-cd \
+  -f argocd-values.yaml \
+  redhat-cop/gitops-operator
+```
+
+If you have trouble 😵‍💫 - we have documented some common errors [when installing ArgoCD](docs/argocd-install.md) which may help.
+
+### 🤠 Deploying the Ubiquitous Journey
+
+A handy one liner to deploy all the default software artifacts in this project using their default values. Just make sure the namespace you set below is the same as your ArgoCD namespace from the previous step.
+
+```bash
+helm upgrade --install uj --namespace labs-ci-cd .
+```
+
+If you login to ArgoCD using the UI here:
+
+```bash
+echo https://$(oc get route argocd-server --template='{{ .spec.host }}' -n labs-ci-cd)
+```
+
+you should see lots of things spinning up
+
+![argocd-ui](docs/images/argocd-uj.png)
+
+You can set `enabled: true` on all of the application definitions in the `values-*.yaml` files if you want to deploy everything 🧨 .... 💥
+
+Fork the repo and make your changes in the fork if you wish to GitOp enable things. Update the `source` in values.yaml to make sure ArgoCD is pulling from the correct source repo (your fork). If you've already forked the repo and want to deploy quickly you can also run:
+
+```bash
+helm upgrade --install uj \
+  --set source=https://github.com/<YOUR_FORK>/ubiquitous-journey.git \
+  --namespace labs-ci-cd .
+```
+
+### Cleanup 🧤
+
+Uninstall and delete all resources in the various projects
+```bash
+# This may take a while:
+helm delete uj --namespace labs-ci-cd
+
+# Then remove your ArgoCD instance
+helm delete argocd --namespace labs-ci-cd
+```
+
+### Debugging 🤺
+
+Run the following command to debug one of the UJ values files to see which values are being passed:
+
+```bash
+# example debugging the ArgoCD `Application` manifests from the example deployment 
+helm install debug --dry-run -f pet-battle/test/values.yaml . 
+```
+
+
+</details>
+
+
+
+</br>
+
+
+
+[***GitHub - slok/agebox: Age based repository file encryption gitops tool***](https://github.com/slok/agebox)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/slok/agebox) ![GitHub Repo stars](https://img.shields.io/github/stars/slok/agebox?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/slok/agebox)
+
+
+
+</br>
+
+
+<details>
+
+<summary>README</summary> 
+
+<p align="center">
+    <img src="img/logo.png" width="50%" align="center" alt="agebox">
+</p>
+
+# agebox
+
+[![CI](https://github.com/slok/agebox/actions/workflows/ci.yaml/badge.svg?branch=main)](https://github.com/slok/agebox/actions/workflows/ci.yaml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/slok/agebox)](https://goreportcard.com/report/github.com/slok/agebox)
+[![Apache 2 licensed](https://img.shields.io/badge/license-Apache2-blue.svg)](https://raw.githubusercontent.com/slok/agebox/master/LICENSE)
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/slok/agebox)](https://github.com/slok/agebox/releases/latest)
+
+Easy and simple file repository encryption tool based on [Age].
+
+Have you ever thought _"this should be simple"_ while you were using tools like [Blackbox] , [Git-crypt] or [Sops]? This is what agebox is. A tool on top of [Age]'s security system that encrypts/decrypts your repository files, focused on simplicity and gitops.
+
+## Features
+
+- Secure (Agebox delegates security to [Age]).
+- Tracks encrypted files in repository.
+- No PGP and no agents, just simple SSH and [Age] key files.
+- File flexibility (encrypts/decrypts recursive paths, multiple/single files, all tracked files...).
+- Reencrypts all tracked files with a single command.
+- Focused on Gitops, CI flows and simplicity.
+- Works with any file (doesn't understand formats like JSON, YAML...).
+- Single binary/executable.
+- No side effects like VCS commands (e.g: doesn't execute Git commands for you).
+
+## Get agebox
+
+- [Releases](https://github.com/slok/agebox/releases)
+- [Docker images](https://github.com/users/slok/packages/container/package/agebox)
+- `git clone git@github.com:slok/agebox.git && cd ./agebox && make build && ls -la ./bin`
+
+## Getting started
+
+Initialize agebox tracking file.
+
+```bash
+agebox init
+```
+
+Encrypt (and track) multiple files.
+
+```bash
+agebox encrypt ./app1/secret1.yaml ./app2/secret1.yaml
+```
+
+Encrypt (and track) a directory in dry-run to see what would be encrypted before doing it.
+
+```bash
+agebox encrypt ./secrets --dry-run
+```
+
+Encrypt (and track) a directory and only (filter regex used) the `secret` named yaml files.
+
+```bash
+agebox encrypt ./manifests --filter ".*secret(\.yaml|\.yml)$"
+```
+
+Decrypt a subset of tracked secrets and a file.
+
+```bash
+agebox decrypt ./secrets/team-1 ./secrets/secret1.yaml
+```
+
+Decrypt only (filter regex used) `team-a` tracked files.
+
+```bash
+agebox decrypt ./secrets --filter ".*team-a.*"
+```
+
+Force decryption of all tracked files.
+
+```bash
+agebox decrypt --all --force
+```
+
+Validate tracked secrets are encrypted and not decrypted (without decrypt validation).
+
+```bash
+agebox validate --no-decrypt
+```
+
+Cat multiple encrypted files and print them to stdout.
+
+```bash
+agebox cat ./secrets/secret1.yaml.agebox ./secrets/secret2.json.agebox --no-log
+```
+
+Reencrypt all files.
+
+```bash
+agebox reencrypt
+```
+
+Untrack multiple files.
+
+```bash
+agebox untrack ./secrets/secret1.yaml ./secrets/secret2.yaml
+```
+
+Untrack and delete file.
+
+```bash
+agebox untrack ./secrets/secret1.yaml --delete
+```
+
+## How does it work
+
+When you initialize agebox on a repository it will create a file (`.ageboxreg.yml`) that will track all the encrypted
+files in the repository.
+
+From now on if you encrypt files with agebox from the root of the repository it will:
+
+- Track the files if not already tracked.
+- Encrypt the files with the public keys in `./keys` or `--public-keys` as recipients.
+- If is a directory it will expand to all the files in the directory and subdirectories.
+
+As a regular flow of agebox usage examples, you can:
+
+- Decrypt tracked files as a single file, multiple files, a directory and its subdirectories...
+- Decrypt all tracked files (`--all`).
+- Reencrypt all tracked files with the public key recipients.
+- Encrypt all tracked files (`--all`) that are decrypted in the repository.
+- Untrack a file (and optionally delete from the file system).
+- Encrypt/decrypt in dry-run to validate (handy en CI for checking).
+- Cat encrypted files to stdout.
+- Validate tracked files are encrypted and not decrypted (useful on CI, git hooks...).
+
+Check the **Getting started** section for specific commands.
+
+## Keys
+
+Agebox supports the same asymmetric keys [Age] does:
+
+- X25519 (Age).
+- RSA SSH.
+- Ed25519 SSH.
+
+**Agebox knows how to discover keys in directories (recursively).**
+
+### Public keys
+
+The public keys are the recipients of the encrypted files. With their respective private keys, users will be able to decrypt the files.
+
+Public keys should be on a directory relative to the root of the repository (by default `./keys`) at the moment of invoking encryption commands, this simplifies the usage of keys by not requiring pgp keys or agents.
+
+Agebox will encrypt with the loaded public keys, this means that when we add or remove any public key we should `reencrypt` the tracked files.
+
+In case you don't want to have all the public keys in all the repositories that are managed by agebox, you could centralize these keys in another repository andgetting them before invoking agebox. Some usage examples:
+
+- Git submodule `git pull --recurse-submodules`.
+- Git repo and previous agebox command invoke `git clone/pull`.
+- Download public keys from S3.
+
+You can configure this with `--public-keys` flag or `AGEBOX_PUBLIC_KEYS` env var.
+
+You can have multiple public keys in a file (one per line), like [Age recipients file](https://github.com/FiloSottile/age/#recipient-files).
+
+### Private keys
+
+By default Agebox will try loading all the valid private keys from `HOME/.ssh`, however you can configure this with `--private-keys` flag or `AGEBOX_PRIVATE_KEYS` env var to point to specific directory with the keys (or a path to a single key).
+
+## Alternatives
+
+- [Blackbox]: Uses PGP (requires an agent), complex and sometimes has undesired side effects (e.g git commands execution).
+- [Sops]: Lots of features and very complex for simple use cases.
+- [Git-crypt]: Uses PGP (requires an agent), complex, 100% tied to Git.
+
+## Kudos
+
+Thanks to [@FiloSottile](https://twitter.com/FiloSottile), [@Benjojo12](https://twitter.com/Benjojo12) and all the other [contributors](https://github.com/FiloSottile/age/graphs/contributors) of [Age].
+
+Without [Age], [Agebox] would not exist.
+
+[agebox]: https://github.com/slok/agebox
+[age]: https://github.com/FiloSottile/age
+[blackbox]: https://github.com/StackExchange/blackbox
+[sops]: https://github.com/mozilla/sops
+[git-crypt]: https://github.com/AGWA/git-crypt
+
+
+</details>
+
+
+
+</br>
+
+
+
+[***GitHub - Azure/AzOps: AzOps is a PowerShell module which deploys (Push) Resource Templates &amp; Bicep files at all Azure scope levels and exports (Pull) ARM resource hierarchy.***](https://github.com/Azure/AzOps)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/Azure/AzOps) ![GitHub Repo stars](https://img.shields.io/github/stars/Azure/AzOps?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/Azure/AzOps)
+
+
+
+</br>
+
+
+<details>
+
+<summary>README</summary> 
+
+# AzOps
+
+![GitHub issues by-label](https://img.shields.io/github/issues/azure/azops/enhancement?label=enhancement%20issues)
+![GitHub issues by-label](https://img.shields.io/github/issues/azure/azops/bug?label=bug%20issues)
+![PowerShell Gallery](https://img.shields.io/powershellgallery/dt/azops)
+![GitHub Super-Linter](https://github.com/Azure/AzOps/workflows/AzOps%20-%20Tests/badge.svg)
+![GitHub Super-Linter](https://github.com/Azure/AzOps/workflows/Lint%20Code%20Base/badge.svg)
+
+This repository is for active development of the AzOps PowerShell cmdlets.
+
+## Getting started
+
+For tutorials, samples and quick starts, visit the [AzOps Accelerator](https://github.com/azure/azops-accelerator) template repository.
+
+## Dependencies
+
+- [Az.Accounts](https://github.com/azure/azure-powershell)
+- [Az.Billing](https://github.com/azure/azure-powershell)
+- [Az.Resources](https://github.com/azure/azure-powershell)
+- [PSFramework](https://github.com/PowershellFrameworkCollective/psframework)
+
+## Need help?
+
+For introduction guidance visit the [GitHub Wiki](https://github.com/azure/azops/wiki)  
+For reference documentation visit the [Enterprise-Scale](https://github.com/azure/enterprise-scale)  
+For tutorials, samples and quick starts, go to [AzOps Accelerator](https://github.com/azure/azops-accelerator)  
+For information on contributing to the module, visit the [Contributing Guide](https://github.com/Azure/azops/wiki/debug)  
+For information on migrating to the new version, visit the [Migration Guide](https://github.com/azure/azops/wiki/migration)  
+File an issue via [GitHub Issues](https://github.com/azure/azops/issues/new/choose)  
+
+## Output
+
+AzOps is rooted in the principle that everything in Azure is a resource and to operate at-scale, it should be managed declaratively to determine target goal state of the overall platform.
+
+This PowerShell module provides the ability to deploy Resource Templates & Bicep files at all Azure [scope](https://docs.microsoft.com/azure/role-based-access-control/scope-overview) levels. To provide this functionality the multiple scopes within Azure Resource Manager are represented (example below) within Git. Using directories and files, templates can be deployed (Push) at various scopes whilst also exporting (Pull) composite templates from ARM and placing them within the repository.
+
+```bash
+root
+└── tenant root group (e42bc18f)
+    ├── applications (73fded8a)
+    │   ├── development (204bf7a2)
+    │   │   ├── microsoft.authorization_roleassignments-4f687d42.json
+    │   │   ├── microsoft.management_managementgroups-204bf7a2.json
+    │   │   └── subscription-1 (fdfda291)
+    │   │       ├── microsoft.authorization_policyassignments-securitycenterbuiltin.json
+    │   │       └── microsoft.subscription_subscriptions-fdfda291.json
+    │   ├── microsoft.authorization_roleassignments-219d3675.json
+    │   ├── microsoft.management_managementgroups-73fded8a.json
+    │   └── production (75718043)
+    │       ├── microsoft.authorization_roleassignments-5bf6a637.json
+    │       ├── microsoft.management_managementgroups-75718043.json
+    │       └── subscription-2 (ad32efed)
+    │           ├── microsoft.authorization_policyassignments-dataprotectionsecuritycenter.json
+    │           ├── microsoft.authorization_policyassignments-securitycenterbuiltin.json
+    │           └── microsoft.subscription_subscriptions-ad32efed.json
+    ├── microsoft.authorization_roleassignments-d18adbf0.json
+    ├── microsoft.authorization_roledefinitions-40db802e.json
+    ├── microsoft.management_managementgroups-e42bc18f.json
+    └── platform (4dc7bd90)
+        ├── microsoft.authorization_policydefinitions-3029d7f6.parameters.json
+        ├── microsoft.authorization_roleassignments-92ebbfe0.json
+        ├── microsoft.management_managementgroups-4dc7bd90.json
+        └── subscription-0 (1e045925)
+            ├── microsoft.authorization_policyassignments-dataprotectionsecuritycenter.json
+            ├── microsoft.authorization_policyassignments-securitycenterbuiltin.json
+            ├── microsoft.authorization_roleassignments-3d8b69be.json
+            ├── microsoft.subscription_subscriptions-1e045925.json
+            └── networks
+                └── microsoft.resources_resourcegroups-networks.json
+```
+
+## Contributing
+
+This project welcomes contributions and suggestions.  Most contributions require you to agree to a
+Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
+the rights to use your contribution. For details, visit <https://cla.opensource.microsoft.com>.
+
+When you submit a pull request, a CLA bot will automatically determine whether you need to provide
+a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
+provided by the bot. You will only need to do this once across all repos using our CLA.
+
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
+For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
+contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+
+## Trademarks
+
+This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft
+trademarks or logos is subject to and must follow
+[Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general).
+Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.
+Any use of third-party trademarks or logos are subject to those third-party's policies.
+
+</details>
+
+
+
+</br>
+
+
+
+[***GitHub - onedr0p/home-ops: A mono repository for my home infrastructure and Kubernetes cluster which adheres to Infrastructure as Code (IaC) and GitOps practices where possible***](https://github.com/onedr0p/home-ops)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/onedr0p/home-ops) ![GitHub Repo stars](https://img.shields.io/github/stars/onedr0p/home-ops?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/onedr0p/home-ops)
+
+
+
+</br>
+
+
+
+</br>
+
+
+
+[***GitHub - kubernetes/git-sync: A sidecar app which clones a git repo and keeps it in sync with the upstream.***](https://github.com/kubernetes/git-sync)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/kubernetes/git-sync) ![GitHub Repo stars](https://img.shields.io/github/stars/kubernetes/git-sync?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/kubernetes/git-sync)
+
+
+
+</br>
+
+
+
+</br>
+
+
+
+[***GitHub - bjw-s/home-ops: My home or for-home infrastructure written as code, adhering to GitOps practices***](https://github.com/bjw-s/home-ops)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/bjw-s/home-ops) ![GitHub Repo stars](https://img.shields.io/github/stars/bjw-s/home-ops?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/bjw-s/home-ops)
+
+
+
+</br>
+
+
+<details>
+
+<summary>README</summary> 
+
+<!-- markdownlint-disable MD041 -->
+<img src="https://camo.githubusercontent.com/5b298bf6b0596795602bd771c5bddbb963e83e0f/68747470733a2f2f692e696d6775722e636f6d2f7031527a586a512e706e67" align="left" width="144px" height="144px"/>
+
+# My home Kubernetes cluster managed by GitOps
+
+_... managed by Flux and serviced with RenovateBot_ :robot:
+
+<br/>
+<br/>
+<br/>
+
+<div align="center">
+
+[![Discord](https://img.shields.io/discord/673534664354430999?style=for-the-badge&label=discord&logo=discord&logoColor=white&color=teal)](https://discord.gg/k8s-at-home)
+[![k3s](https://img.shields.io/badge/k3s-v1.21.3-blue?style=for-the-badge&logo=kubernetes&logoColor=white)](https://k3s.io/)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled?logo=pre-commit&logoColor=white&style=for-the-badge&color=brightgreen)](https://github.com/pre-commit/pre-commit)
+[![renovate](https://img.shields.io/badge/renovate-enabled?style=for-the-badge&logo=renovatebot&logoColor=white&color=brightgreen)](https://github.com/renovatebot/renovate)
+
+</div>
+
+---
+
+## :wave: Overview
+
+Welcome to my home operations repository.
+
+Lots of fun (to me at least :wink:) stuff can be found, poke around my [Kubernetes clusters](./kubernetes/clusters) directory to see what they are running. Feel free to open a [GitHub Issue](https://github.com/bjw-s/home-ops/issues/new).
+
+For more information, head on over to my [docs](https://bjw-s.github.io/home-ops/).
+
+---
+
+## :handshake:&nbsp; Thanks
+
+A lot of inspiration for my cluster came from the people that have shared their clusters over at [awesome-home-kubernetes](https://github.com/k8s-at-home/awesome-home-kubernetes)
+
+
+</details>
+
+
+
+</br>
+
+
+
+[***GitHub - argoproj/gitops-engine: Democratizing GitOps***](https://github.com/argoproj/gitops-engine)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/argoproj/gitops-engine) ![GitHub Repo stars](https://img.shields.io/github/stars/argoproj/gitops-engine?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/argoproj/gitops-engine)
+
+
+
+</br>
+
+
+
+</br>
+
+
+
+[***GitHub - mogensen/kubernetes-split-yaml: Split the &#39;giant yaml file&#39; into one file pr kubernetes resource***](https://github.com/mogensen/kubernetes-split-yaml)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/mogensen/kubernetes-split-yaml) ![GitHub Repo stars](https://img.shields.io/github/stars/mogensen/kubernetes-split-yaml?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/mogensen/kubernetes-split-yaml)
+
+
+
+</br>
+
+
+
+</br>
+
+
+
 [***GitHub - mikefarah/yq: yq is a portable command-line YAML, JSON and XML processor***](https://github.com/mikefarah/yq)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/mikefarah/yq) ![GitHub Repo stars](https://img.shields.io/github/stars/mikefarah/yq?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/mikefarah/yq)
+
+
 ***QUICK INSTALL***
 
 ```bash
 curl -L --silent "https://github.com/mikefarah/yq/releases/download/$(curl -L -s "https://api.github.com/repos/mikefarah/yq/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")')/yq_linux_amd64" -o /bin/yq && chmod +x /bin/yq
 ```
 
+
+</br>
+
+
+
+</br>
+
+
+
 [***GitHub - cookiecutter/cookiecutter: A cross-platform command-line utility that creates projects from cookiecutters (project templates), e.g. Python package projects, C projects.***](https://github.com/cookiecutter/cookiecutter)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/cookiecutter/cookiecutter) ![GitHub Repo stars](https://img.shields.io/github/stars/cookiecutter/cookiecutter?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/cookiecutter/cookiecutter)
+
+
+***QUICK INSTALL***
+
+```bash
+python3 -m pip install --user cookiecutter
+```
+
+
+</br>
+
+
+
+</br>
+
+
 
 [***GitHub - google/python-fire: Python Fire is a library for automatically generating command line interfaces (CLIs) from absolutely any Python object.***](https://github.com/google/python-fire)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/google/python-fire) ![GitHub Repo stars](https://img.shields.io/github/stars/google/python-fire?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/google/python-fire)
 
+
+
+</br>
+
+
+
+</br>
+
+
+
 [***GitHub - nektos/act: Run your GitHub Actions locally 🚀***](https://github.com/nektos/act)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/nektos/act) ![GitHub Repo stars](https://img.shields.io/github/stars/nektos/act?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/nektos/act)
+
+
 ***QUICK INSTALL***
 
 ```bash
 curl -L "https://github.com/nektos/act/releases/download/$(curl -L -s "https://api.github.com/repos/nektos/act/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")')/act_Linux_x86_64.tar.gz" | tar --extract -C ~/.local/bin -zxvf -
 ```
 
+
+</br>
+
+
+
+</br>
+
+
+
 [***GitHub - k8s-at-home/flux-cluster-template: Highly opinionated template for deploying a single Kubernetes (k3s) cluster with Ansible and Terraform backed by Flux, SOPS, GitHub Actions, Renovate and more!***](https://github.com/k8s-at-home/flux-cluster-template)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/k8s-at-home/flux-cluster-template) ![GitHub Repo stars](https://img.shields.io/github/stars/k8s-at-home/flux-cluster-template?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/k8s-at-home/flux-cluster-template)<details>
+![GitHub last commit](https://img.shields.io/github/last-commit/k8s-at-home/flux-cluster-template) ![GitHub Repo stars](https://img.shields.io/github/stars/k8s-at-home/flux-cluster-template?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/k8s-at-home/flux-cluster-template)
+
+
+
+</br>
+
+
+<details>
 
 <summary>README</summary> 
 
@@ -672,14 +1430,27 @@ Many people have shared their awesome repositories over at [awesome-home-kuberne
 </details>
 
 
+
+</br>
+
+
+
 [***GitHub - FiloSottile/age: A simple, modern and secure encryption tool (and Go library) with small explicit keys, no config options, and UNIX-style composability.***](https://github.com/FiloSottile/age)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/FiloSottile/age) ![GitHub Repo stars](https://img.shields.io/github/stars/FiloSottile/age?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/FiloSottile/age)
+
+
 ***QUICK INSTALL***
 
 ```bash
 curl -L "https://github.com/FiloSottile/age/releases/download/$(curl -L -s "https://api.github.com/repos/FiloSottile/age/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")')/age-$(curl -L -s "https://api.github.com/repos/FiloSottile/age/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")')-linux-amd64.tar.gz" | tar --extract -C ~/.local/bin --strip=1 -zxvf -
-```<details>
+```
+
+
+</br>
+
+
+<details>
 
 <summary>README</summary> 
 
@@ -934,29 +1705,91 @@ Help from new packagers is very welcome.
 </details>
 
 
+
+</br>
+
+
+
 [***GitHub - xUnholy/k8s-gitops: Kubernetes cluster managed by GitOps - Git as a single source of truth, automated pipelines, declarative everything, next-generation DevOps***](https://github.com/xUnholy/k8s-gitops)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/xUnholy/k8s-gitops) ![GitHub Repo stars](https://img.shields.io/github/stars/xUnholy/k8s-gitops?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/xUnholy/k8s-gitops)
+
+
+
+</br>
+
+
+
+</br>
+
+
 
 [***GitHub - gnunn-gitops/standards: GitOps standards used in my other repos***](https://github.com/gnunn-gitops/standards)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/gnunn-gitops/standards) ![GitHub Repo stars](https://img.shields.io/github/stars/gnunn-gitops/standards?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/gnunn-gitops/standards)
 
+
+
+</br>
+
+
+
+</br>
+
+
+
 [***GitHub - lepture/mistune: A fast yet powerful Python Markdown parser with renderers and plugins.***](https://github.com/lepture/mistune)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/lepture/mistune) ![GitHub Repo stars](https://img.shields.io/github/stars/lepture/mistune?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/lepture/mistune)
+
+
+
+</br>
+
+
+
+</br>
+
+
 
 [***GitHub - ovity/octotree: GitHub on steroids***](https://github.com/ovity/octotree)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/ovity/octotree) ![GitHub Repo stars](https://img.shields.io/github/stars/ovity/octotree?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/ovity/octotree)
 
+
+
+</br>
+
+
+
+</br>
+
+
+
 [***GitHub - helm/charts: ⚠️(OBSOLETE) Curated applications for Kubernetes***](https://github.com/helm/charts)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/helm/charts) ![GitHub Repo stars](https://img.shields.io/github/stars/helm/charts?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/helm/charts)
 
+
+
+</br>
+
+
+
+</br>
+
+
+
 [***GitHub - xwmx/nb: CLI and local web plain text note‑taking, bookmarking, and archiving with linking, tagging, filtering, search, Git versioning &amp; syncing, Pandoc conversion, + more, in a single portable script.***](https://github.com/xwmx/nb)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/xwmx/nb) ![GitHub Repo stars](https://img.shields.io/github/stars/xwmx/nb?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/xwmx/nb)<details>
+![GitHub last commit](https://img.shields.io/github/last-commit/xwmx/nb) ![GitHub Repo stars](https://img.shields.io/github/stars/xwmx/nb?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/xwmx/nb)
+
+
+
+</br>
+
+
+<details>
 
 <summary>README</summary> 
 
@@ -10273,19 +11106,42 @@ tests with globbing, e.g., `bats test/browse*` and `bats test/folders*`.
 </details>
 
 
+
+</br>
+
+
+
 [***GitHub - smallstep/cli: 🧰 A zero trust swiss army knife for working with X509, OAuth, JWT, OATH OTP, etc.***](https://github.com/smallstep/cli)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/smallstep/cli) ![GitHub Repo stars](https://img.shields.io/github/stars/smallstep/cli?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/smallstep/cli)
 
+
+
+</br>
+
+
+
+</br>
+
+
+
 [***GitHub - loft-sh/vcluster: vcluster - Create fully functional virtual Kubernetes clusters - Each vcluster runs inside a namespace of the underlying k8s cluster. It&#39;s cheaper than creating separate full-blown clusters and it offers better multi-tenancy and isolation than regular namespaces.***](https://github.com/loft-sh/vcluster)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/loft-sh/vcluster) ![GitHub Repo stars](https://img.shields.io/github/stars/loft-sh/vcluster?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/loft-sh/vcluster)
+
+
 ***QUICK INSTALL***
 
 ```bash
 curl -s -L "https://github.com/loft-sh/vcluster/releases/latest" | sed -nE 's!.*"([^"]*vcluster-linux-amd64)".*!https://github.com\1!p' | xargs -n 1 curl -L -o vcluster && chmod +x vcluster;
 sudo mv vcluster /usr/local/bin;
-```<details>
+```
+
+
+</br>
+
+
+<details>
 
 <summary>README</summary> 
 
@@ -10461,22 +11317,55 @@ This project is open-source and licensed under Apache 2.0, so you can use it in 
 </details>
 
 
+
+</br>
+
+
+
 [***GitHub - rosineygp/mkdkr: mkdkr = Makefile + Docker***](https://github.com/rosineygp/mkdkr)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/rosineygp/mkdkr) ![GitHub Repo stars](https://img.shields.io/github/stars/rosineygp/mkdkr?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/rosineygp/mkdkr)
+
+
+
+</br>
+
+
+
+</br>
+
+
 
 [***GitHub - mkdocs/mkdocs: Project documentation with Markdown.***](https://github.com/mkdocs/mkdocs)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/mkdocs/mkdocs) ![GitHub Repo stars](https://img.shields.io/github/stars/mkdocs/mkdocs?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/mkdocs/mkdocs)
 
+
+
+</br>
+
+
+
+</br>
+
+
+
 [***GitHub - helm/chart-releaser: Hosting Helm Charts via GitHub Pages and Releases***](https://github.com/helm/chart-releaser)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/helm/chart-releaser) ![GitHub Repo stars](https://img.shields.io/github/stars/helm/chart-releaser?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/helm/chart-releaser)
+
+
 ***QUICK INSTALL***
 
 ```bash
 curl -L "https://github.com/helm/chart-releaser/releases/download/$(curl -L -s "https://api.github.com/repos/helm/chart-releaser/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1)/chart-releaser_$(curl -L -s "https://api.github.com/repos/helm/chart-releaser/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1 | cut -c2- )_linux_amd64.tar.gz" | sudo tar -C /usr/bin -xzv
-```<details>
+```
+
+
+</br>
+
+
+<details>
 
 <summary>README</summary> 
 
@@ -10686,9 +11575,21 @@ The `cr index` command should also generate a warning when a release has no asse
 </details>
 
 
+
+</br>
+
+
+
 [***GitHub - vidispine/hull: The incredible HULL - Helm Uniform Layer Library - is a Helm library chart to improve Helm chart based workflows***](https://github.com/vidispine/hull)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/vidispine/hull) ![GitHub Repo stars](https://img.shields.io/github/stars/vidispine/hull?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/vidispine/hull)<details>
+![GitHub last commit](https://img.shields.io/github/last-commit/vidispine/hull) ![GitHub Repo stars](https://img.shields.io/github/stars/vidispine/hull?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/vidispine/hull)
+
+
+
+</br>
+
+
+<details>
 
 <summary>README</summary> 
 
@@ -10714,7 +11615,7 @@ Below is the HULL charts [`README.md`](/hull/README.md):
 
 One major design aspect of [Helm](https://helm.sh) is that it forces the user to create individual abstractions of the Kubernetes configuration of applications. For each individual Helm Chart that is realized in form of YAML templates in a [Helm charts](https://helm.sh/docs/topics/charts/) `/templates` folder. These template files, containing boilerplate Kubernetes YAML code blocks on the one hand and custom configuration mappings utilizing Go Templating expressions on the other hand, provide the glue between the configuration of the application via the central `values.yaml` configuration file and the desired Kubernetes YAML output. Arguably this approach of per-application abstraction is suited well to create tailormade configuration packages for even the most specialized applications but comes at a cost of having a large overhead for simpler, recurring and off-the-shelf application packaging use cases. Creating, maintaining and (often) understanding the abstractions introduced by Helm Charts - especially when facing a high number of individual Helm charts from various sources - can become tedious and challenging.
 
-The primary feature of the HULL library is the ability to remove customized YAML template files entirely from Helm chart workflows and thereby allowing to remove a level of abstraction. Using the HULL library chart, Kubernetes objects including all their properties can be completely and transparently specified in the `values.yaml`. The HULL library chart itself provides the uniform layer to streamline specification, configuration and rendering of Helm charts to achieve this. You can also think of it as a thin layer on top of the Kubernetes API to avoid the middleman between Helm Chart and Kubernetes API object configuration, yet providing flexibility when it is required to customize individual configuration options instead of requiring you to add each configuration switch manually to the templates. JSON schema validation based on the [Helm JSON validation feature](https://helm.sh/docs/topics/charts/#schema-files) (via `values.schema.json`) aids in writing Kubernetes API conforming objects right from the beginning when [using an IDE that supports live JSON schema validation](./doc/json_schema_validation.md). Additional benefits (uniform inheritable object metadata, simplified inclusion of ConfigMaps/Secrets, cross-referencing values within the `values.yaml`, ...) are available with HULL which you can read about below in the **Key Features Overview**. But maybe most importantly, the HULL library can be added as a dependency to any existing Helm chart and be used side-by-side without breaking any existing Helm charts functionalities, see [adding the HULL library chart to a Helm chart](./doc/setup.md) for more information. And lastly, by being a library chart itself, everything works 100% within the functionality that plain Helm offers - no additional tooling is introduced or involved.
+The primary feature of the HULL library is the ability to remove customized YAML template files entirely from Helm chart workflows and thereby allowing to remove a level of abstraction. Using the HULL library chart, Kubernetes objects including all their properties can be completely and transparently specified in the `values.yaml`. The HULL library chart itself provides the uniform layer to streamline specification, configuration and rendering of Helm charts to achieve this. You can also think of it as a thin layer on top of the Kubernetes API to avoid the middleman between Helm Chart and Kubernetes API object configuration, yet providing flexibility when it is required to customize individual configuration options instead of requiring you to add each configuration switch manually to the templates. JSON schema validation based on the [Helm JSON validation feature](https://helm.sh/docs/topics/charts/#schema-files) (via `values.schema.json`) aids in writing Kubernetes API conforming objects right from the beginning when [using an IDE that supports live JSON schema validation](./hull/doc/json_schema_validation.md). Additional benefits (uniform inheritable object metadata, simplified inclusion of ConfigMaps/Secrets, cross-referencing values within the `values.yaml`, ...) are available with HULL which you can read about below in the **Key Features Overview**. But maybe most importantly, the HULL library can be added as a dependency to any existing Helm chart and be used side-by-side without breaking any existing Helm charts functionalities, see [adding the HULL library chart to a Helm chart](./hull/doc/setup.md) for more information. And lastly, by being a library chart itself, everything works 100% within the functionality that plain Helm offers - no additional tooling is introduced or involved.
 
 **Your feedback on this project is valued, hence please comment or start a discussion in the `Issues` section or create feature wishes and bug reports. Thank you!**
 
@@ -10731,15 +11632,15 @@ As highlighted above, when included in a Helm chart the HULL library chart can t
 
 - Concentrate on what is needed to specify Kubernetes objects without having to add individual boilerplate YAML templates to your chart. This removes a common source of errors and maintenance from the regular Helm workflow. **To have the HULL rendered output conform to the Kubernetes API specification, a large number of unit tests validate the HULL rendered output against the Kubernetes API JSON schema.**
 
-  For more details refer to the documentation on [JSON Schema Validation](./doc/json_schema_validation.md).
+  For more details refer to the documentation on [JSON Schema Validation](./hull/doc/json_schema_validation.md).
 
 - For all Kubernetes object types supported by HULL, **full configurational access to the Kubernetes object types properties is directly available**. This relieves chart maintainers from having to add missing configuration options one by one and the Helm chart users from forking the Helm chart to add just the properties they need for their configuration. Only updating the HULL chart to a newer version with matching Kubernetes API version is required to enable configuration of properties added to Kubernetes objects meanwhile in newer API versions. The HULL charts are versioned to reflect the minimal Kubernetes API versions supported by them. 
 
-   For more details refer to the documentation on [Architecture Overview](./doc/architecture.md).
+   For more details refer to the documentation on [Architecture Overview](./hull/doc/architecture.md).
 
 - The single interface of the HULL library is used to both create and configure objects in charts for deployment. This fosters the mutual understanding of chart creators/maintainers and consumers of how the chart actually works and what it contains. Digging into the `/templates` folder to understand the Helm charts implications is not required anymore. To avoid any misconfiguration, the interface to the library - the `values.yaml` of the HULL library - is fully JSON validated. **When using an IDE supporting live JSON schema validation (e.g. VSCode) you can get IDE guidance when creating the HULL objects.  Before rendering, JSON schema conformance is validated by the HULL library.**
 
-  For more details refer to the documentation on [JSON Schema Validation](./doc/json_schema_validation.md).
+  For more details refer to the documentation on [JSON Schema Validation](./hull/doc/json_schema_validation.md).
 
 - **Uniform and rich metadata is automatically attached to all objects created by the HULL library.** 
   - Kubernetes standard labels as defined for [Kubernetes](https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/) and [Helm](https://helm.sh/docs/chart_best_practices/labels/#standard-labels) are added to all objects metadata automatically. 
@@ -10752,15 +11653,15 @@ As highlighted above, when included in a Helm chart the HULL library chart can t
 
 - Flexible handling of ConfigMap and Secret input by choosing between inline specification of contents in `values.yaml` or import from external files for contents of larger sizes. When importing data from files the data can be either run through the templating engine or imported un-templated 'as is' if it already contains templating expressions that shall be passed on to the consuming application. **Adding ConfigMaps or Secrets to your deployment requires only a few lines of code.**
 
-  For more details refer to the documentation on [ConfigMaps and Secrets](./doc/configmaps_secrets.md).
+  For more details refer to the documentation on [ConfigMaps and Secrets](./hull/doc/configmaps_secrets.md).
 
 - For more complex scenarios where actual values in the target YAML are subject to configurations in the `values.yaml`, there is **support to dynamically populate values by injecting Go Templating expressions defined in place of the value in the `values.yaml`**. For example, if your concrete container arguments depend on various other settings in `values.yaml` you can inject the conditions into the calculation of the arguments.
 
-  For more details refer to the documentation on [Transformations](./doc/transformations.md).
+  For more details refer to the documentation on [Transformations](./hull/doc/transformations.md).
 
 - Enable automatic hashing of referenced ConfigMaps and Secrets to facilitate pod restarts on changes of configuration (work in progress)
 
-To learn more about the general architecture and features of the HULL library see the [Architecture Overview](./doc/architecture.md)
+To learn more about the general architecture and features of the HULL library see the [Architecture Overview](./hull/doc/architecture.md)
 
 ## Important information
 
@@ -10768,7 +11669,7 @@ Some important things to mention first before looking at the library in more det
 
 ⚠️ **While there may be several benefits to rendering YAML via the HULL library please take note that it is a non-breaking addition to your Helm charts. The regular Helm workflow involving rendering of YAML templates in the `/templates` folder is completely unaffected by integration of the HULL library chart. Sometimes you might have very specific requirements on your configuration or object specification which the HULL library does not meet so you can use the regular Helm workflow for them and the HULL library for your more standard needs - easily in parallel in the same Helm chart.** ⚠️
 
-⚠️ **Note that a single static file, the `hull.yaml`, must be copied 'as-is' without any modification from an embedded HULL charts root folder to the parent charts `/templates` folder to be able to render any YAML via HULL. It contains the code that initiates the HULL rendering pipeline, see [adding the HULL library chart to a Helm chart](./doc/setup.md) for more details!** ⚠️
+⚠️ **Note that a single static file, the `hull.yaml`, must be copied 'as-is' without any modification from an embedded HULL charts root folder to the parent charts `/templates` folder to be able to render any YAML via HULL. It contains the code that initiates the HULL rendering pipeline, see [adding the HULL library chart to a Helm chart](./hull/doc/setup.md) for more details!** ⚠️
 
 ⚠️ **At this time HULL releases are tested against all existing non-beta and non-alpha Helm 3 CLI versions. Note that Helm CLI versions `3.0.x` are not compatible with HULL, all other currently existing non-beta and non-alpha versions are compatible.** ⚠️
 
@@ -10975,7 +11876,7 @@ HULL<br> Object Type<br>&#160; | HULL <br>Properties | Kubernetes/External<br> P
 `job` | [**hull.ObjectBase.v1**](doc/objects_base.md)<br>`enabled`<br>`annotations`<br>`labels`<br>`staticName`<br><br>[**hull.PodTemplate.v1**](doc/objects_pod.md)<br>`templateAnnotations`<br>`templateLabels`<br>`pod` | [**jobspec-v1-batch**](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#jobspec-v1-batch)<br>`activeDeadlineSeconds`<br>`backoffLimit`<br>`completionMode`<br>`completions`<br>`manualSelector`<br>`parallelism`<br>`selector`<br>`suspend`<br>`ttlSecondsAfterFinished` 
 `daemonset` | [**hull.ObjectBase.v1**](doc/objects_base.md)<br>`enabled`<br>`annotations`<br>`labels`<br>`staticName`<br><br>[**hull.PodTemplate.v1**](doc/objects_pod.md)<br>`templateAnnotations`<br>`templateLabels`<br>`pod` | [**daemonsetspec-v1-apps**](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#daemonsetspec-v1-apps)<br>`minReadySeconds`<br>`revisionHistoryLimit`<br>`updateStrategy` 
 `statefulset` | [**hull.ObjectBase.v1**](doc/objects_base.md)<br>`enabled`<br>`annotations`<br>`labels`<br>`staticName`<br><br>[**hull.PodTemplate.v1**](doc/objects_pod.md)<br>`templateAnnotations`<br>`templateLabels`<br>`pod` | [**statefulsetspec-v1-apps**](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#statefulsetspec-v1-apps)<br>`podManagementPolicy`<br>`replicas`<br>`revisionHistoryLimit`<br>`serviceName`<br>`updateStrategy`<br>`serviceName`<br>`volumeClaimTemplates` 
-`cronjob` | [**hull.ObjectBase.v1**](doc/objects_base.md)<br>`enabled`<br>`annotations`<br>`labels`<br>`staticName`<br><br>[**hull.Job.v1**](./README.md)<br>`job` | [**cronjobspec-v1-batch**](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#cronjobspec-v1-batch)<br>`concurrencyPolicy`<br>`failedJobsHistoryLimit`<br>`schedule`<br>`startingDeadlineSeconds`<br>`successfulJobsHistoryLimit`<br>`suspend` 
+`cronjob` | [**hull.ObjectBase.v1**](doc/objects_base.md)<br>`enabled`<br>`annotations`<br>`labels`<br>`staticName`<br><br>[**hull.Job.v1**](./hull/README.md)<br>`job` | [**cronjobspec-v1-batch**](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#cronjobspec-v1-batch)<br>`concurrencyPolicy`<br>`failedJobsHistoryLimit`<br>`schedule`<br>`startingDeadlineSeconds`<br>`successfulJobsHistoryLimit`<br>`suspend` 
 
 **[Service APIs](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#-strong-service-apis-strong-)**
 HULL<br> Object Type<br>&#160; | HULL <br>Properties | Kubernetes/External<br> Properties
@@ -11069,7 +11970,7 @@ spec:
         - containerPort: 80
 ```
 
-To render this analogously using the HULL library your chart needs to be [setup for using HULL](./doc/setup.md). In the following section we assume the parent Helm chart is named `hull-test` and we use the `helm template` command to test render the `values.yaml`'s.
+To render this analogously using the HULL library your chart needs to be [setup for using HULL](./hull/doc/setup.md). In the following section we assume the parent Helm chart is named `hull-test` and we use the `helm template` command to test render the `values.yaml`'s.
 
 ### Minimal Example
 
@@ -11465,15 +12366,27 @@ metadata:
   name: release-name-hull-test-nginx_configmap
 ```
 
-Read the additional documentation in the [documentation folder](./doc) on how to utilize the features of the HULL library to the full effect.
+Read the additional documentation in the [documentation folder](./hull/doc) on how to utilize the features of the HULL library to the full effect.
 
 
 </details>
 
 
+
+</br>
+
+
+
 [***GitHub - helm/chartmuseum: Host your own Helm Chart Repository***](https://github.com/helm/chartmuseum)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/helm/chartmuseum) ![GitHub Repo stars](https://img.shields.io/github/stars/helm/chartmuseum?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/helm/chartmuseum)<details>
+![GitHub last commit](https://img.shields.io/github/last-commit/helm/chartmuseum) ![GitHub Repo stars](https://img.shields.io/github/stars/helm/chartmuseum?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/helm/chartmuseum)
+
+
+
+</br>
+
+
+<details>
 
 <summary>README</summary> 
 
@@ -12181,29 +13094,91 @@ You can reach the *ChartMuseum* community and developers in the [Kubernetes Slac
 </details>
 
 
+
+</br>
+
+
+
 [***GitHub - Datalux/Osintgram: Osintgram is a OSINT tool on Instagram. It offers an interactive shell to perform analysis on Instagram account of any users by its nickname***](https://github.com/Datalux/Osintgram)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/Datalux/Osintgram) ![GitHub Repo stars](https://img.shields.io/github/stars/Datalux/Osintgram?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/Datalux/Osintgram)
+
+
+
+</br>
+
+
+
+</br>
+
+
 
 [***GitHub - bitnami/charts: Bitnami Helm Charts***](https://github.com/bitnami/charts)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/bitnami/charts) ![GitHub Repo stars](https://img.shields.io/github/stars/bitnami/charts?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/bitnami/charts)
 
+
+
+</br>
+
+
+
+</br>
+
+
+
 [***GitHub - kubernetes/autoscaler: Autoscaling components for Kubernetes***](https://github.com/kubernetes/autoscaler)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/kubernetes/autoscaler) ![GitHub Repo stars](https://img.shields.io/github/stars/kubernetes/autoscaler?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/kubernetes/autoscaler)
+
+
+
+</br>
+
+
+
+</br>
+
+
 
 [***GitHub - argoproj/argocd-example-apps: Example Apps to Demonstrate Argo CD***](https://github.com/argoproj/argocd-example-apps)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/argoproj/argocd-example-apps) ![GitHub Repo stars](https://img.shields.io/github/stars/argoproj/argocd-example-apps?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/argoproj/argocd-example-apps)
 
+
+
+</br>
+
+
+
+</br>
+
+
+
 [***GitHub - kubernetes-sigs/kubespray: Deploy a Production Ready Kubernetes Cluster***](https://github.com/kubernetes-sigs/kubespray)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/kubernetes-sigs/kubespray) ![GitHub Repo stars](https://img.shields.io/github/stars/kubernetes-sigs/kubespray?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/kubernetes-sigs/kubespray)
 
+
+
+</br>
+
+
+
+</br>
+
+
+
 [***GitHub - k8s-at-home/flux-cluster-template: Highly opinionated template for deploying a single Kubernetes (k3s) cluster with Ansible and Terraform backed by Flux, SOPS, GitHub Actions, Renovate and more!***](https://github.com/k8s-at-home/template-cluster-k3s)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/k8s-at-home/template-cluster-k3s) ![GitHub Repo stars](https://img.shields.io/github/stars/k8s-at-home/template-cluster-k3s?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/k8s-at-home/template-cluster-k3s)<details>
+![GitHub last commit](https://img.shields.io/github/last-commit/k8s-at-home/template-cluster-k3s) ![GitHub Repo stars](https://img.shields.io/github/stars/k8s-at-home/template-cluster-k3s?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/k8s-at-home/template-cluster-k3s)
+
+
+
+</br>
+
+
+<details>
 
 <summary>README</summary> 
 
@@ -12755,13 +13730,35 @@ Many people have shared their awesome repositories over at [awesome-home-kuberne
 </details>
 
 
+
+</br>
+
+
+
 [***GitHub - stakater/Reloader: A Kubernetes controller to watch changes in ConfigMap and Secrets and do rolling upgrades on Pods with their associated Deployment, StatefulSet, DaemonSet and DeploymentConfig – [✩Star] if you&#39;re using it!***](https://github.com/stakater/Reloader)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/stakater/Reloader) ![GitHub Repo stars](https://img.shields.io/github/stars/stakater/Reloader?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/stakater/Reloader)
 
+
+
+</br>
+
+
+
+</br>
+
+
+
 [***GitHub - emberstack/kubernetes-reflector: Custom Kubernetes controller that can be used to replicate secrets, configmaps and certificates.***](https://github.com/emberstack/kubernetes-reflector)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/emberstack/kubernetes-reflector) ![GitHub Repo stars](https://img.shields.io/github/stars/emberstack/kubernetes-reflector?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/emberstack/kubernetes-reflector)<details>
+![GitHub last commit](https://img.shields.io/github/last-commit/emberstack/kubernetes-reflector) ![GitHub Repo stars](https://img.shields.io/github/stars/emberstack/kubernetes-reflector?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/emberstack/kubernetes-reflector)
+
+
+
+</br>
+
+
+<details>
 
 <summary>README</summary> 
 
@@ -12935,54 +13932,167 @@ spec:
 </details>
 
 
+
+</br>
+
+
+
 [***GitHub - go-task/task: A task runner / simpler Make alternative written in Go***](https://github.com/go-task/task)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/go-task/task) ![GitHub Repo stars](https://img.shields.io/github/stars/go-task/task?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/go-task/task)
+
+
 ***QUICK INSTALL***
 
 ```bash
 sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
 ```
 
+
+</br>
+
+
+
+</br>
+
+
+
 [***GitHub - megadose/holehe: holehe allows you to check if the mail is used on different sites like twitter, instagram and will retrieve information on sites with the forgotten password function.***](https://github.com/megadose/holehe)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/megadose/holehe) ![GitHub Repo stars](https://img.shields.io/github/stars/megadose/holehe?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/megadose/holehe)
+
+
+
+</br>
+
+
+
+</br>
+
+
 
 [***GitHub - webtorrent/webtorrent-cli: WebTorrent, the streaming torrent client. For the command line.***](https://github.com/webtorrent/webtorrent-cli)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/webtorrent/webtorrent-cli) ![GitHub Repo stars](https://img.shields.io/github/stars/webtorrent/webtorrent-cli?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/webtorrent/webtorrent-cli)
 
+
+
+</br>
+
+
+
+</br>
+
+
+
 [***GitHub - zakjan/cert-chain-resolver: SSL certificate chain resolver***](https://github.com/zakjan/cert-chain-resolver)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/zakjan/cert-chain-resolver) ![GitHub Repo stars](https://img.shields.io/github/stars/zakjan/cert-chain-resolver?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/zakjan/cert-chain-resolver)
+
+
+
+</br>
+
+
+
+</br>
+
+
 
 [***GitHub - cert-manager/cert-manager: Automatically provision and manage TLS certificates in Kubernetes***](https://github.com/cert-manager/cert-manager)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/cert-manager/cert-manager) ![GitHub Repo stars](https://img.shields.io/github/stars/cert-manager/cert-manager?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/cert-manager/cert-manager)
 
+
+
+</br>
+
+
+
+</br>
+
+
+
 [***GitHub - gravitational/teleport: Certificate authority and access plane for SSH, Kubernetes, web apps, databases and desktops***](https://github.com/gravitational/teleport)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/gravitational/teleport) ![GitHub Repo stars](https://img.shields.io/github/stars/gravitational/teleport?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/gravitational/teleport)
+
+
+
+</br>
+
+
+
+</br>
+
+
 
 [***GitHub - localtunnel/localtunnel: expose yourself***](https://github.com/localtunnel/localtunnel)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/localtunnel/localtunnel) ![GitHub Repo stars](https://img.shields.io/github/stars/localtunnel/localtunnel?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/localtunnel/localtunnel)
 
+
+
+</br>
+
+
+
+</br>
+
+
+
 [***GitHub - argoproj-labs/argocd-image-updater: Automatic container image update for Argo CD***](https://github.com/argoproj-labs/argocd-image-updater)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/argoproj-labs/argocd-image-updater) ![GitHub Repo stars](https://img.shields.io/github/stars/argoproj-labs/argocd-image-updater?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/argoproj-labs/argocd-image-updater)
+
+
+
+</br>
+
+
+
+</br>
+
+
 
 [***GitHub - rancher/system-upgrade-controller: In your Kubernetes, upgrading your nodes***](https://github.com/rancher/system-upgrade-controller)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/rancher/system-upgrade-controller) ![GitHub Repo stars](https://img.shields.io/github/stars/rancher/system-upgrade-controller?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/rancher/system-upgrade-controller)
 
+
+
+</br>
+
+
+
+</br>
+
+
+
 [***GitHub - archlinux/archinstall: Arch Linux installer - guided, templates etc.***](https://github.com/archlinux/archinstall)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/archlinux/archinstall) ![GitHub Repo stars](https://img.shields.io/github/stars/archlinux/archinstall?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/archlinux/archinstall)
 
+
+
+</br>
+
+
+
+</br>
+
+
+
 [***GitHub - sensepost/Frack: Frack - Keep and Maintain your breach data***](https://github.com/sensepost/Frack)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/sensepost/Frack) ![GitHub Repo stars](https://img.shields.io/github/stars/sensepost/Frack?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/sensepost/Frack)<details>
+![GitHub last commit](https://img.shields.io/github/last-commit/sensepost/Frack) ![GitHub Repo stars](https://img.shields.io/github/stars/sensepost/Frack?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/sensepost/Frack)
+
+
+
+</br>
+
+
+<details>
 
 <summary>README</summary> 
 
@@ -13103,43 +14213,117 @@ The query module allows you to query the dataset for domains. The output will be
 </details>
 
 
+
+</br>
+
+
+
 [***GitHub - cloudposse/charts: The &quot;Cloud Posse&quot; Distribution of Kubernetes Applications***](https://github.com/cloudposse/charts)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/cloudposse/charts) ![GitHub Repo stars](https://img.shields.io/github/stars/cloudposse/charts?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/cloudposse/charts)
+
+
+
+</br>
+
+
+
+</br>
+
+
 
 [***GitHub - chr4/shellrc: Shell dotfiles, conf.d stype, for multiple shells (bash, zsh)***](https://github.com/chr4/shellrc)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/chr4/shellrc) ![GitHub Repo stars](https://img.shields.io/github/stars/chr4/shellrc?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/chr4/shellrc)
 
+
+
+</br>
+
+
+
+</br>
+
+
+
 [***GitHub - emirozer/kubectl-doctor: kubectl cluster triage plugin for k8s - 🏥 (brew doctor equivalent)***](https://github.com/emirozer/kubectl-doctor)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/emirozer/kubectl-doctor) ![GitHub Repo stars](https://img.shields.io/github/stars/emirozer/kubectl-doctor?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/emirozer/kubectl-doctor)
+
+
+
+</br>
+
+
+
+</br>
+
+
 
 [***GitHub - willhallonline/docker-ansible: Ansible inside Docker containers: Alpine, Ubuntu, Centos &amp; Debian with Ansible 2.12, 2.11, 2.10 and 2.9 + Mitogen***](https://github.com/willhallonline/docker-ansible)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/willhallonline/docker-ansible) ![GitHub Repo stars](https://img.shields.io/github/stars/willhallonline/docker-ansible?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/willhallonline/docker-ansible)
 
+
+
+</br>
+
+
+
+</br>
+
+
+
 [***GitHub - zricethezav/gitleaks: Protect and discover secrets using Gitleaks 🔑***](https://github.com/zricethezav/gitleaks)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/zricethezav/gitleaks) ![GitHub Repo stars](https://img.shields.io/github/stars/zricethezav/gitleaks?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/zricethezav/gitleaks)
+
+
 ***QUICK INSTALL***
 
 ```bash
 curl -L "https://github.com/zricethezav/gitleaks/releases/download/$(curl -L -s "https://api.github.com/repos/zricethezav/gitleaks/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1)/gitleaks_$(curl -L -s "https://api.github.com/repos/zricethezav/gitleaks/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1 | cut -c2- )_linux_x64.tar.gz" | sudo tar -C /usr/bin -xzv
 ```
 
+
+</br>
+
+
+
+</br>
+
+
+
 [***GitHub - Jaydee94/kubeseal-webgui: This is a python based webapp for using Bitnami-Sealed-Secrets in a web-ui.***](https://github.com/Jaydee94/kubeseal-webgui)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/Jaydee94/kubeseal-webgui) ![GitHub Repo stars](https://img.shields.io/github/stars/Jaydee94/kubeseal-webgui?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/Jaydee94/kubeseal-webgui)
 
+
+
+</br>
+
+
+
+</br>
+
+
+
 [***GitHub - bitnami-labs/sealed-secrets: A Kubernetes controller and tool for one-way encrypted Secrets***](https://github.com/bitnami-labs/sealed-secrets)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/bitnami-labs/sealed-secrets) ![GitHub Repo stars](https://img.shields.io/github/stars/bitnami-labs/sealed-secrets?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/bitnami-labs/sealed-secrets)
+
+
 ***QUICK INSTALL***
 
 ```bash
 curl -L "https://github.com/bitnami-labs/sealed-secrets/releases/download/$(curl -L -s "https://api.github.com/repos/bitnami-labs/sealed-secrets/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1)/kubeseal-$(curl -L -s "https://api.github.com/repos/bitnami-labs/sealed-secrets/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1 | cut -c2- )-linux-amd64.tar.gz" | sudo tar -C /usr/bin -xzv
-```<details>
+```
+
+
+</br>
+
+
+<details>
 
 <summary>README</summary> 
 
@@ -13816,14 +15000,27 @@ Click [here](http://slack.k8s.io) to sign up to the Kubernetes Slack org.
 </details>
 
 
+
+</br>
+
+
+
 [***GitHub - argoproj-labs/argocd-autopilot: Argo-CD Autopilot***](https://github.com/argoproj-labs/argocd-autopilot)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/argoproj-labs/argocd-autopilot) ![GitHub Repo stars](https://img.shields.io/github/stars/argoproj-labs/argocd-autopilot?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/argoproj-labs/argocd-autopilot)
+
+
 ***QUICK INSTALL***
 
 ```bash
 curl -L --silent https://github.com/argoproj-labs/argocd-autopilot/releases/download/$(curl -L -s "https://api.github.com/repos/argoproj-labs/argocd-autopilot/releases/latest" | grep -Poe '"tag_name": "\K.*?(?=")' | head -n 1)/argocd-autopilot-linux-amd64.tar.gz | tar zx && mv ./argocd-autopilot-* ./argocd-autopilot
-```<details>
+```
+
+
+</br>
+
+
+<details>
 
 <summary>README</summary> 
 
@@ -13998,6 +15195,21 @@ Click here to join: https://slack.cncf.io/
 </details>
 
 
+
+</br>
+
+
+
 [***GitHub - redhat-cop/patch-operator: An operator to apply patches to Kubernetes objects in a declarative way.***](https://github.com/redhat-cop/patch-operator)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/redhat-cop/patch-operator) ![GitHub Repo stars](https://img.shields.io/github/stars/redhat-cop/patch-operator?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/redhat-cop/patch-operator)
+
+
+
+</br>
+
+
+
+</br>
+
+
