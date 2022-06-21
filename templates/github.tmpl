@@ -1,25 +1,23 @@
 {% raw %}
-
 ## Refresh markdown files content.
 
 ```bash
 cd $(mktemp -d) && git clone https://github.com/weallfloatdownhere/docthis.git .&& python3 docthis.py generate . && git add . && git commit -m "Regen README" && git push
 ```
 
-{% endraw %}
-
 ---
+{% endraw %}
 
 {% for repo in github_repositories|default([]) %}
 
-# *{{ repo.url | dirname | trim -}}*
+# *{{ repo.repo | dirname | trim -}}*
 
 [***{{ repo.description -}}***]({{ repo.url }})
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/{{ repo.repo }}) ![GitHub Repo stars](https://img.shields.io/github/stars/{{ repo.repo }}?style=social) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/{{ repo.repo }})
 
 {% if repo.install != 'undefined' and repo.install != "" %}
-***QUICK INSTALL***
+<ins>***Quick install***</ins>
 
 ```bash
 {{ repo.install|safe }}
@@ -31,16 +29,12 @@ cd $(mktemp -d) && git clone https://github.com/weallfloatdownhere/docthis.git .
 
 <summary>README</summary> 
 
-{{ repo.readme|safe }}
+{{ repo.readme | safe }}
 
 </details>
 
 {% endif %}
 
-{% raw %}
-
 ---
 
-</br>
-{% endraw %}
 {% endfor %}
