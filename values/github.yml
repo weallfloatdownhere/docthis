@@ -2,6 +2,9 @@ github_repositories:
   - name: helm/helm
     install: ""
     
+  - name: rht-labs/ubiquitous-journey
+    install: ""
+    
   - name: kubernetes/git-sync
     install: ""
     
