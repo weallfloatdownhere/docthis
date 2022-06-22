@@ -206,6 +206,9 @@ helms_charts:
   - arthurk/argocd-example-install
 
 index:
+  free_webservices:
+    - name: Great free online Video, Gif, Photo editor.
+      website: https://www.kapwing.com/
   documentations:
     generators:
       - name: mkdocs
