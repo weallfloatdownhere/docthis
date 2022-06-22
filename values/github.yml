@@ -31,6 +31,9 @@ github_repositories:
   - name: helm/helm
     install: ""
     
+  - name: aquasecurity/trivy
+    install: ""
+    
   - name: adam-p/markdown-here
     install: ""
     
