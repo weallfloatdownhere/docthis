@@ -2,6 +2,9 @@ github_repositories:
   - name: helm/helm
     install: ""
     
+  - name: adam-p/markdown-here
+    install: ""
+    
   - name: AGWA/git-crypt
     install: ""
     
