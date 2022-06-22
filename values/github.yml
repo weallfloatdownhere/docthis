@@ -1,3 +1,32 @@
+index:
+  curated_awesome_list:
+    - name: "Diagram designers"
+      url: https://github.com/robbie-cao/awesome-diagrams
+    - name: "Awesome CI"
+      url: https://awesomeopensource.com/project/CodyReichert/awesome-cl
+  free_webservices:
+    - name: kapwing
+      description: Great free online Video, Gif, Photo editor.
+      website: https://www.kapwing.com/
+    - name: Git planet
+      description: Git repository indexer to find top tools by category.
+      url: https://gitplanet.com
+  tools_by_topics:
+    documentations:
+      generators:
+        - name: mkdocs
+          url: https://www.mkdocs.org/
+      markdown:
+        - name: "Pandoc"
+          url: https://pandoc.org
+      windows:
+        - name: screetogif
+        website: https://www.screentogif.com
+    kubernetes:
+      helm_charts:
+        - bitnami/argo-cd
+        - arthurk/argocd-example-install
+
 github_repositories:
   - name: helm/helm
     install: ""
@@ -190,7 +219,7 @@ github_repositories:
   - name: redhat-cop/patch-operator
     install: ""
 
-awesome_list:
+
   websites:
     - name: "Git planet"
       url: https://gitplanet.com
@@ -199,23 +228,3 @@ awesome_list:
       url: https://github.com/robbie-cao/awesome-diagrams
     - name: "Awesome CI"
       url: https://awesomeopensource.com/project/CodyReichert/awesome-cl
-
-
-helms_charts:
-  - bitnami/argo-cd
-  - arthurk/argocd-example-install
-
-index:
-  free_webservices:
-    - name: Great free online Video, Gif, Photo editor.
-      website: https://www.kapwing.com/
-  documentations:
-    generators:
-      - name: mkdocs
-        url: https://www.mkdocs.org/
-    markdown:
-      - name: "Pandoc"
-        url: https://pandoc.org
-    windows:
-      - name: screetogif
-        website: https://www.screentogif.com
