@@ -31,6 +31,9 @@ github_repositories:
   - name: helm/helm
     install: ""
     
+  - name: k8s-at-home/library-charts
+    install: ""
+    
   - name: aquasecurity/trivy
     install: ""
     
