@@ -36,6 +36,8 @@ github_repositories:
     resources:
       - name: Creating a new chart step by step
         url: https://docs.k8s-at-home.com/our-helm-charts/development/creating-a-new-chart/#prerequisites
+      - name: Github repository complete example
+        url: https://github.com/k8s-at-home/charts/tree/master/charts/stable/zigbee2mqtt
       
   - name: aquasecurity/trivy
     install: ""
