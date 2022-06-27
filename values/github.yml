@@ -34,6 +34,9 @@ github_repositories:
   - name: k8s-at-home/library-charts
     install: ""
     
+  - name: k8s-at-home/awesome-home-kubernetes
+    install: ""
+    
   - name: aquasecurity/trivy
     install: ""
     
