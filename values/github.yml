@@ -42,6 +42,9 @@ github_repositories:
   - name: aquasecurity/trivy
     install: ""
     
+  - name: multiarch/qemu-user-static
+    install: ""
+    
   - name: adam-p/markdown-here
     install: ""
     
