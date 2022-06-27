@@ -33,10 +33,10 @@ github_repositories:
     
   - name: k8s-at-home/library-charts
     install: ""
-    
-  - name: k8s-at-home/awesome-home-kubernetes
-    install: ""
-    
+    resources:
+      - name: Creating a new chart step by step
+        url: https://docs.k8s-at-home.com/our-helm-charts/development/creating-a-new-chart/#prerequisites
+      
   - name: aquasecurity/trivy
     install: ""
     
