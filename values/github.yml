@@ -39,6 +39,9 @@ github_repositories:
       - name: Github repository complete example
         url: https://github.com/k8s-at-home/charts/tree/master/charts/stable/zigbee2mqtt
       
+  - name: hairyhenderson/gomplate
+    install: ""
+      
   - name: webdevops/go-replace
     install: ""
       
