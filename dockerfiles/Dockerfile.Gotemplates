@@ -1,0 +1,35 @@
+FROM golang:1.18.3-buster as baseline
+RUN mkdir -p /usr/local/bin
+
+COPY DockerImports /usr/project
+
+WORKDIR /usr/local/bin
+ENV HELM_VERSION="v3.9.0"
+ENV P2CLI_VERSION="r13"
+ENV AGE_VERSION="v1.1.0-rc.1"
+ENV YQ_VERSION="v4.25.3"
+ENV GOTASK_VERSION="v3.13.0"
+ENV GOMPLATE_VERSION="v3.11.1"
+ENV GOREPLACE_VERSION="2.6"
+ENV GITCRYPT_VERSION="0.7.0"
+ENV SOPS_VERSION: "v3.7.1"
+
+RUN apt -y update
+RUN apt -y install bash git curl openssl
+RUN git config --global user.name "Gitops installer"
+RUN git config --global user.email "gitops@noreply.local"
+RUN curl -L --silent https://github.com/FiloSottile/age/releases/download/${AGE_VERSION}/age-${AGE_VERSION}-linux-amd64.tar.gz | tar --extract --strip=1 -zxvf - \
+    && curl -L --silent https://github.com/hairyhenderson/gomplate/releases/download/${GOMPLATE_VERSION}/gomplate_linux-amd64 \
+    && curl -L --silent https://github.com/piranha/goreplace/releases/download/${GOREPLACE_VERSION}/gr-64-linux -o goreplace \
+    && curl -L https://github.com/wrouesnel/p2cli/releases/download/${P2CLI_VERSION}/p2-linux-x86_64 -o p2cli \
+    && curl -L --silent https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz | tar --extract --strip=1 -zxvf - linux-amd64/helm \
+    && curl -L --silent https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_amd64 -o /usr/local/bin/yq \
+    && curl -L --silent https://github.com/mozilla/sops/releases/download/${SOPS_VERSION}/sops-${SOPS_VERSION}.linux -o /usr/local/bin/sops \
+    && curl -L --silent https://github.com/go-task/task/releases/download/${GOTASK_VERSION}/task_linux_amd64.tar.gz | tar --extract -zxvf - task \
+    && curl -L --silent https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl -o kubectl \
+    && chmod +x /usr/local/bin/* \
+    && rm -f /var/cache/apt/archives/*.deb || true
+
+WORKDIR /usr/project
+ENTRYPOINT ["task"]
+CMD ["-l"]
