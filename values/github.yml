@@ -48,6 +48,9 @@ github_repositories:
   - name: aquasecurity/trivy
     install: ""
     
+  - name: wrouesnel/p2cli
+    install: ""
+    
   - name: flosch/pongo2
     install: ""
     
