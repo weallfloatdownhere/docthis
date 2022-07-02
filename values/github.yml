@@ -48,6 +48,9 @@ github_repositories:
   - name: webdevops/go-replace
     install: ""
       
+  - name: /kubeshop/monokle
+    install: ""
+      
   - name: aquasecurity/trivy
     install: ""
     
