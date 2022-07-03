@@ -51,7 +51,10 @@ github_repositories:
   - name: patrickdappollonio/kubectl-slice
     install: "mkdir -p ~/.local/bin && curl -L --silent https://github.com/patrickdappollonio/kubectl-slice/releases/download/v1.2.3/kubectl-slice_1.2.3_linux_x86_64.tar.gz | tar -C ~/bin -xzv"
       
-  - name: /kubeshop/monokle
+  - name: kubeshop/monokle
+    install: ""
+      
+  - name: cantino/mcfly
     install: ""
       
   - name: aquasecurity/trivy
