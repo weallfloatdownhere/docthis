@@ -17,6 +17,8 @@ index:
         - name: mkdocs
           url: https://www.mkdocs.org/
       markdown:
+        - name: "The best Markdown guide by examples."
+          url: https://about.gitlab.com/handbook/markdown-guide/
         - name: "Pandoc"
           url: https://pandoc.org
       windows:
