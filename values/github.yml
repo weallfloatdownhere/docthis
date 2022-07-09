@@ -29,6 +29,9 @@ index:
         - name: "Turbocharge ArgoCD with App of Apps Pattern and Kustomized Helm."
           url: https://medium.com/dzerolabs/turbocharge-argocd-with-app-of-apps-pattern-and-kustomized-helm-ea4993190e7c
     kubernetes:
+      kustomize:
+        - name: Compilation of practical examples of kustomization usage.
+          url: https://github.com/kubernetes-sigs/kustomize/tree/master/examples
       helm_charts:
         - bitnami/argo-cd
         - arthurk/argocd-example-install
@@ -47,7 +50,7 @@ github_repositories:
       
   - name: alexellis/arkade
     install: "mkdir -p ~/.local/bin && curl -L --silent https://github.com/alexellis/arkade/releases/download/0.8.29/arkade -o ~/.local/bin/arkade"
-      
+           
   - name: jkroepke/helm-secrets
     install: ""
     
