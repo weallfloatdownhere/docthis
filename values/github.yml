@@ -24,6 +24,10 @@ index:
       windows:
         - name: screetogif
         website: https://www.screentogif.com
+    gitops:
+      argocd:
+        - name: "Turbocharge ArgoCD with App of Apps Pattern and Kustomized Helm."
+          url: https://medium.com/dzerolabs/turbocharge-argocd-with-app-of-apps-pattern-and-kustomized-helm-ea4993190e7c
     kubernetes:
       helm_charts:
         - bitnami/argo-cd
