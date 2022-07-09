@@ -63,6 +63,9 @@ github_repositories:
   - name: webdevops/go-replace
     install: ""
       
+  - name: abhijithvijayan/stargazed
+    install: ""
+      
   - name: blendle/kubecrt
     install: "curl -L --silent https://github.com/blendle/kubecrt/releases/download/v0.9.2/kubecrt_v0.9.2_linux_amd64 -o ~/.local/bin/kubecrt"
       
